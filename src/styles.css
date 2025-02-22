@@ -1,1 +1,52 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("./assets/component-styles.css");
+@import url("./assets/shared-styles.css");
+
+:root {
+  --primary-color: #1a1a1a;
+  --secondary-color: #00a3ff;
+  --accent-color: #39ff14;
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100vh;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: default;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-color);
+  color: #e0e0e0;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-size: 14px;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+a:visited {
+  text-decoration: none;
+  color: initial;
+}
+
+input {
+  outline: none;
+  font-size: 14px;
+}
