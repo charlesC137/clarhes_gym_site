@@ -5,5 +5,5 @@ export const routes: Routes = [
   { path: '', component: HomeComponent },
 
   //set routes above
-  { path: '**', redirectTo: '/error' },
+  //{ path: '**', redirectTo: '/error' },
 ];

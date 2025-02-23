@@ -1,3 +1,107 @@
 <app-header></app-header>
-<p>working</p>
+<section class="hero">
+  <div class="hero-content">
+    <h1>Transform Your Body. Own Your Strength.</h1>
+    <p>Your journey starts here. Discover more below.</p>
+    <button href="#about">Get Started</button>
+  </div>
+</section>
+
+<section class="features">
+  <div class="feature">
+    <i class="icon fa-solid fa-clock"></i>
+    <h3>24/7 Access</h3>
+    <p>Train whenever you want, day or night.</p>
+  </div>
+  <div class="feature">
+    <i class="icon fa-solid fa-user-tie"></i>
+    <h3>Expert Trainers</h3>
+    <p>Work with certified professionals.</p>
+  </div>
+  <div class="feature">
+    <i class="icon fa-solid fa-users"></i>
+    <h3>Group & Personal Training</h3>
+    <p>Choose the training style that suits you.</p>
+  </div>
+  <div class="feature">
+    <i class="icon fa-solid fa-dumbbell"></i>
+    <h3>State-of-the-Art Equipment</h3>
+    <p>Top-quality gear for your workouts.</p>
+  </div>
+</section>
+
+<section class="membership-plans">
+  <div class="plan">
+    <h3>Basic</h3>
+    <p class="price">$19/month</p>
+    <ul>
+      <li>Gym Access</li>
+      <li>Standard Equipment</li>
+      <li>No Personal Training</li>
+    </ul>
+    <button class="cta-btn">Find Your Plan</button>
+  </div>
+
+  <div class="plan">
+    <h3>Standard</h3>
+    <p class="price">$39/month</p>
+    <ul>
+      <li>Full Gym Access</li>
+      <li>Advanced Equipment</li>
+      <li>1 Personal Training Session</li>
+    </ul>
+    <button class="cta-btn">Find Your Plan</button>
+  </div>
+
+  <div class="plan">
+    <h3>Premium</h3>
+    <p class="price">$59/month</p>
+    <ul>
+      <li>All Access</li>
+      <li>Exclusive Equipment</li>
+      <li>Unlimited Personal Training</li>
+    </ul>
+    <button class="cta-btn">Find Your Plan</button>
+  </div>
+</section>
+
+<section id="featured-classes">
+  <h2>Featured Classes & Schedule</h2>
+
+  <owl-carousel-o [options]="customOptions">
+    <ng-template carouselSlide *ngFor="let class of classes">
+      <div class="class-card">
+        <img [src]="class.image" [alt]="class.name" />
+        <h3>{{ class.name }}</h3>
+        <p>{{ class.schedule }}</p>
+      </div>
+    </ng-template>
+  </owl-carousel-o>
+</section>
+
+<section id="testimonials">
+  <h2>What Our Members Say</h2>
+
+  <owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let testimonial of testimonials">
+      <ng-template carouselSlide>
+        <div class="testimonial">
+          <img
+            [src]="testimonial.image"
+            alt="{{ testimonial.user }}'s Testimonial"
+          />
+          <p>{{ testimonial.text }}</p>
+          <h4>- {{ testimonial.user }}.</h4>
+        </div>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</section>
+
+<section class="cta-container">
+  <h2>Ready to Transform Your Fitness Journey?</h2>
+  <p>Join today and take the first step towards your goals.</p>
+  <button class="cta-button">Sign Up Now</button>
+</section>
+
 <app-footer></app-footer>

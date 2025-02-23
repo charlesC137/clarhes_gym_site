@@ -5,6 +5,8 @@
   --primary-color: #1a1a1a;
   --secondary-color: #00a3ff;
   --accent-color: #39ff14;
+  --light-gray: #e0e0e0;
+  --light-black: #2a2a2a;
 }
 
 html {
@@ -19,7 +21,7 @@ body {
   height: 100vh;
   font-family: "Lato", sans-serif;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 15px;
   cursor: default;
   display: flex;
   justify-content: center;
@@ -33,20 +35,31 @@ button {
   border: none;
   background-color: transparent;
   font-size: 14px;
+  color: var(--light-black);
 }
 
 a {
   cursor: pointer;
+  color: #e0e0e0;
   text-decoration: none;
-  color: inherit;
+  border-bottom: 0.5px solid transparent;
+  transition: color 0.3s, border-bottom 0.3s;
+}
+
+a:hover {
+  color: #00a3ff !important;
+  border-bottom: 0.5px solid #00a3ff;
 }
 
 a:visited {
-  text-decoration: none;
-  color: initial;
+  color: #e0e0e0;
 }
 
 input {
   outline: none;
   font-size: 14px;
+}
+
+i {
+  color: var(--accent-color);
 }

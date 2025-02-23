@@ -3,14 +3,77 @@
 </div>
 
 <div class="links">
-  <a routerLink="">Home</a>
-  <a routerLink="">Class Schedule</a>
-  <a routerLink="">Membership Plans</a>
-  <a routerLink="">Book A Class</a>
-  <a routerLink="">Contact Us</a>
+  <a *ngFor="let link of pinnedLinks" [routerLink]="link.path">
+    {{ link.name }}
+  </a>
+
+  <a *ngIf="isAuth" [routerLink]="'/book'">Book a Class</a>
 </div>
 
 <div class="right">
-  <a routerLink="/login">Log In</a>
-  <i class="fas fa-bars" style="color: white"></i>
+  <a [routerLink]="'/profile'" *ngIf="isAuth">
+    <i class="fa fa-user"></i>
+  </a>
+  <a [routerLink]="'/login'" *ngIf="!isAuth"> Login </a>
+  <button (click)="toggleSidebar()">
+    <i class="fas fa-bars"></i>
+  </button>
+</div>
+
+<div class="menu" [ngClass]="{ show: showSidebar }">
+  <div class="submenu">
+    <button (click)="toggleSidebar()"><i class="fas fa-xmark"></i></button>
+
+    <ng-container *ngIf="isMobile; else desktopLinks">
+      <a *ngFor="let link of mobileBurgerLinks" [routerLink]="link.path">
+        {{ link.name }}
+      </a>
+
+      <div class="more-header" (click)="toggleMoreSubmenu()">
+        <div>More</div>
+        <button>
+          <i
+            [ngClass]="{ show: showMoreSubmenu }"
+            class="fas fa-chevron-right"
+          ></i>
+        </button>
+      </div>
+
+      <div class="more-tab" [ngClass]="{ show: showMoreSubmenu }">
+        <a *ngFor="let link of burgerLinks.more" [routerLink]="link.path">
+          {{ link.name }}
+        </a>
+      </div>
+    </ng-container>
+
+    <ng-template #desktopLinks>
+      <ng-container *ngIf="isAuth">
+        <a *ngFor="let link of burgerLinks.core" [routerLink]="link.path">
+          {{ link.name }}
+        </a>
+
+        <div class="more-header" (click)="toggleMoreSubmenu()">
+          <div>More</div>
+          <button>
+            <i
+              [ngClass]="{ show: showMoreSubmenu }"
+              class="fas fa-chevron-right"
+            ></i>
+          </button>
+        </div>
+
+        <div class="more-tab" [ngClass]="{ show: showMoreSubmenu }">
+          <a *ngFor="let link of burgerLinks.more" [routerLink]="link.path">
+            {{ link.name }}
+          </a>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="!isAuth"
+        ><a *ngFor="let link of burgerLinks.more" [routerLink]="link.path">
+          {{ link.name }}
+        </a></ng-container
+      >
+    </ng-template>
+  </div>
 </div>
