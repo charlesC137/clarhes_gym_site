@@ -1,8 +1,9 @@
 footer {
-  background-color: #1e1e1e; /* Dark Gray */
-  color: #ffffff;
+  background-color: #1e1e1e;
+  color: var(--light-gray);
   padding: 40px 20px;
   text-align: center;
+  text-transform: capitalize;
 }
 
 .footer-container {
@@ -32,7 +33,7 @@ footer {
 }
 
 .footer-column ul li {
-  margin: 8px 0;
+  margin: 13px 0;
 }
 
 .footer-column ul li a {

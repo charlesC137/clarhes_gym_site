@@ -4,10 +4,10 @@ import { FooterComponent } from '../../shared-components/footer/footer.component
 import { HeroBannerComponent } from '../../shared-components/hero-banner/hero-banner.component';
 
 @Component({
-  selector: 'app-contact-us',
+  selector: 'app-privacy-policy',
   standalone: true,
   imports: [HeaderComponent, FooterComponent, HeroBannerComponent],
-  templateUrl: './contact-us.component.html',
-  styleUrl: './contact-us.component.css',
+  templateUrl: './privacy-policy.component.html',
+  styleUrl: './privacy-policy.component.css',
 })
-export class ContactUsComponent {}
+export class PrivacyPolicyComponent {}

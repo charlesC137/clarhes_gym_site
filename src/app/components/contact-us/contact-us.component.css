@@ -1,0 +1,148 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.contact-us {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: var(--primary-color);
+  color: var(--light-gray);
+  overflow-x: hidden;
+  line-height: 23px;
+}
+
+.contact-info {
+  padding: 50px 0;
+  max-width: 100%;
+}
+
+.info-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.info-item {
+  background: #252525;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  flex: 1 1 250px;
+  max-width: 300px;
+}
+
+.info-item h3 {
+  color: var(--accent-color);
+  font-size: 1.3rem;
+}
+
+.info-item p {
+  font-size: 1.1rem;
+  margin-top: 5px;
+  word-wrap: break-word;
+}
+
+.contact-form {
+  padding: 60px 20px;
+  max-width: 100%;
+}
+
+.contact-form form {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: left;
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  color: var(--secondary-color);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--secondary-color);
+  background: #252525;
+  color: var(--light-gray);
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+.cta-button {
+  display: block;
+  background: var(--secondary-color);
+  color: #1a1a1a;
+  padding: 12px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+  border: none;
+}
+
+.cta-button:hover {
+  background: var(--accent-color);
+}
+
+.map {
+  padding: 60px 20px;
+  max-width: 100%;
+}
+
+.map-container {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .info-item {
+    max-width: 90%;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.9rem;
+  }
+
+  .cta-button {
+    font-size: 1rem;
+  }
+}

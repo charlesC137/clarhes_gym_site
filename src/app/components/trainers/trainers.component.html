@@ -1,0 +1,16 @@
+<app-header></app-header>
+<app-hero-banner title="Meet Our Trainers"></app-hero-banner>
+<div class="trainers-container">
+  <div class="trainers-grid">
+    <div class="trainer-card" *ngFor="let trainer of trainers">
+      <img [src]="trainer.image" [alt]="trainer.name" />
+      <h3>{{ trainer.name }}</h3>
+      <p><strong>Specialization:</strong> {{ trainer.specialization }}</p>
+      <p><strong>Qualifications:</strong> {{ trainer.qualifications }}</p>
+      <p><strong>Availability:</strong> {{ trainer.availability }}</p>
+      <a [routerLink]="trainer.bookingLink" class="book-btn">Book Now</a>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -12,6 +12,9 @@ i {
   align-items: center;
   justify-content: center;
   column-gap: 20px;
+  row-gap: 20px;
+  flex-wrap: wrap;
+  padding: 20px 0;
 }
 
 .right {

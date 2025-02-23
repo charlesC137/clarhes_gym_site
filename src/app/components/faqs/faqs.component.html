@@ -1,0 +1,15 @@
+<app-header></app-header>
+<app-hero-banner title="FAQ & Help Center"></app-hero-banner>
+<div class="faq-container">
+  <div class="faq-item" *ngFor="let faq of faqs">
+    <div class="faq-question" (click)="toggleFAQ(faq)">
+      <h3>{{ faq.question }}</h3>
+      <span [class.expanded]="faq.open">+</span>
+    </div>
+    <div class="faq-answer" [class.show]="faq.open">
+      <p>{{ faq.answer }}</p>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

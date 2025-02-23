@@ -1,1 +1,80 @@
-<p>contact-us works!</p>
+<app-header></app-header>
+<app-hero-banner
+  title="Get in Touch"
+  subText="Have questions? Want to book a session? We're here to help. Reach out
+and let's make your fitness journey a success."
+></app-hero-banner>
+
+<div class="contact-us">
+  <section class="contact-info">
+    <h2>Contact Information</h2>
+    <div class="info-grid">
+      <div class="info-item">
+        <h3>📍 Location</h3>
+        <p>123 Fitness Street, Gym City, XY 45678</p>
+      </div>
+      <div class="info-item">
+        <h3>📞 Phone</h3>
+        <p>(123) 456-7890</p>
+      </div>
+      <div class="info-item">
+        <h3>📧 Email</h3>
+        <p>support&#64;yourgym.com</p>
+      </div>
+      <div class="info-item">
+        <h3>🕒 Hours</h3>
+        <p>Mon - Fri: 6:00 AM - 10:00 PM</p>
+        <p>Sat - Sun: 8:00 AM - 8:00 PM</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-form">
+    <h2>Send Us a Message</h2>
+    <p>
+      Fill out the form below, and we’ll get back to you as soon as possible.
+    </p>
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Enter your name" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea
+          id="message"
+          placeholder="Type your message here..."
+          rows="5"
+          required
+        ></textarea>
+      </div>
+      <button type="submit" class="cta-button">Send Message</button>
+    </form>
+  </section>
+
+  <section class="map">
+    <h2>Find Us Here</h2>
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345093644!2d144.95373631531672!3d-37.81627977975179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0x5045675218ce7e33!2zTWFw!5e0!3m2!1sen!2sus!4v1634088136584!5m2!1sen!2sus"
+        width="100%"
+        height="400"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+      >
+      </iframe>
+    </div>
+  </section>
+</div>
+
+<app-footer></app-footer>

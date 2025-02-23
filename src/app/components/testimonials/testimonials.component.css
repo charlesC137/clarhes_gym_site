@@ -1,0 +1,32 @@
+.testimonials-container {
+  background-color: #1a1a1a;
+  color: var(--light-gray);
+  text-align: center;
+  padding: 40px;
+  border-radius: 8px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.testimonial {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+.review-text {
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+.review-author {
+  font-weight: bold;
+  color: #39ff14;
+  margin-top: 10px;
+}
+
+.review-rating {
+  color: #ffd700;
+  font-size: 1.5em;
+}

@@ -1,0 +1,34 @@
+<app-header></app-header>
+<app-hero-banner
+  title="Blog & Resources"
+  subText="Get the latest fitness tips, workout guides, and nutrition advice."
+></app-hero-banner>
+<div class="blog-container">
+  <owl-carousel-o [options]="carouselOptions">
+    <ng-container *ngFor="let post of blogPosts">
+      <ng-template carouselSlide>
+        <div class="slide">
+          <img [src]="post.image" alt="Blog Image" />
+          <div class="slide-content">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.description }}</p>
+            <a [routerLink]="['/blog', post.id]" class="read-more">Read More</a>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+
+  <div class="blog-list">
+    <div class="blog-post" *ngFor="let post of blogPosts">
+      <img [src]="post.image" alt="Blog Image" class="blog-image" />
+      <div class="blog-content">
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.description }}</p>
+        <a [routerLink]="['/blog', post.id]" class="read-more">Read More</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
