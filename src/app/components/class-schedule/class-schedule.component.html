@@ -1,0 +1,64 @@
+<app-header></app-header>
+
+<app-hero-banner title="Gym Schedule"></app-hero-banner>
+
+<div class="schedule-container">
+  <div class="filters">
+    <label>
+      Trainer:
+      <select [(ngModel)]="selectedTrainer">
+        <option value="">All Trainers</option>
+        <option value="Trainer 1">Trainer 1</option>
+        <option value="Trainer 2">Trainer 2</option>
+        <option value="Trainer 3">Trainer 3</option>
+      </select>
+    </label>
+
+    <label>
+      Difficulty:
+      <select [(ngModel)]="selectedDifficulty">
+        <option value="">All Levels</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      </select>
+    </label>
+
+    <label>
+      Location:
+      <select [(ngModel)]="selectedLocation">
+        <option value="">All Locations</option>
+        <option value="In-Person">In-Person</option>
+        <option value="Virtual">Virtual</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="schedule-table">
+    <div class="day" *ngFor="let day of filteredSchedule">
+      <h3 class="day-header">{{ day.name }}</h3>
+
+      <div class="table-header">
+        <span class="column">Time</span>
+        <span class="column">Class Name</span>
+        <span class="column">Trainer</span>
+        <span class="column">Difficulty</span>
+        <span class="column">Location</span>
+      </div>
+
+      <div *ngIf="day.classes.length === 0" class="no-classes">
+        No classes available
+      </div>
+
+      <div class="table-row" *ngFor="let session of day.classes">
+        <span class="column">{{ session.time }}</span>
+        <span class="column">{{ session.name }}</span>
+        <span class="column">{{ session.trainer }}</span>
+        <span class="column">{{ session.difficulty }}</span>
+        <span class="column">{{ session.location }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

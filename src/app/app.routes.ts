@@ -8,6 +8,7 @@ import { TrainersComponent } from './components/trainers/trainers.component';
 import { MembershipComponent } from './components/membership/membership.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { BlogComponent } from './components/blog/blog.component';
+import { ClassScheduleComponent } from './components/class-schedule/class-schedule.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,6 +21,7 @@ export const routes: Routes = [
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'blog', component: BlogComponent },
   //down here do blog/:id then link to postcomponent or sumn http://localhost:4200/blog/2
+  { path: 'schedule', component: ClassScheduleComponent },
 
   //set routes above
   { path: '**', redirectTo: '' },
