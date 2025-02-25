@@ -1,0 +1,49 @@
+<app-header></app-header>
+
+<section class="overview gradient-bg">
+  <div class="greeting">Hey Clarhes, ready for your next workout?</div>
+  <div class="membership-status">
+    <span class="membership-status-header">Your Membership</span>
+    <div class="membership-details">
+      <div>
+        <span>Plan: Premium (Annual)</span>
+        <span>Renews on: March 15, 2025</span>
+        <span>Next Payment: $99.99</span>
+        <span>Auto-Renew: Enabled</span>
+      </div>
+      <button>Manage Membership</button>
+    </div>
+  </div>
+</section>
+
+<section class="upcoming-classes">
+  <h2>Upcoming Classes</h2>
+  <owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let booking of bookings">
+      <ng-template carouselSlide>
+        <div class="booking-card">
+          <div class="instructor-info">
+            <img
+              [src]="booking.image"
+              alt="Instructor"
+              class="instructor-img"
+            />
+            <h3>{{ booking.instructor }}</h3>
+          </div>
+          <div class="class-details">
+            <h4>{{ booking.className }}</h4>
+            <p>{{ booking.date }}</p>
+            <p>{{ booking.location }}</p>
+            <span class="status" [ngClass]="booking.status.toLowerCase()">{{
+              booking.status
+            }}</span>
+          </div>
+          <div class="actions">
+            <button>Reschedule</button>
+            <button>Cancel</button>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</section>

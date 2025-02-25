@@ -20,7 +20,6 @@ export class NavigationService {
     { name: 'About Us', path: '/about' },
     { name: 'Trainers & Instructors', path: '/trainers' },
     { name: 'FAQ & Help Center', path: '/faq' },
-    { name: 'Testimonials & Reviews', path: '/testimonials' },
     { name: 'Blog & Resources', path: '/blog' },
   ];
 

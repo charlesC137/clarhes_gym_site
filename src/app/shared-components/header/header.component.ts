@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit {
   pinnedLinks: any = [];
   burgerLinks: any = { core: [], more: [] };
   mobileBurgerLinks: any = [];
+  messageCount = 10;
 
   ngOnInit() {
     this.pinnedLinks = [...this.navService.pinnedLinks];
