@@ -1,0 +1,49 @@
+<div class="booking-container">
+  <h2>Book a Class</h2>
+
+  <!-- Filter Options -->
+  <div class="filters">
+    <label>Filter by Instructor: </label>
+    <select [(ngModel)]="selectedInstructor">
+      <option value="">All</option>
+      <option *ngFor="let instructor of instructors" [value]="instructor">
+        {{ instructor }}
+      </option>
+    </select>
+  </div>
+
+  <!-- Class List -->
+  <div class="class-list">
+    <div *ngFor="let gymClass of filteredClasses()" class="class-card">
+      <h3>{{ gymClass.name }}</h3>
+      <p><strong>Instructor:</strong> {{ gymClass.instructor }}</p>
+      <p><strong>Time:</strong> {{ gymClass.time }}</p>
+      <p>
+        <strong>Available Spots:</strong>
+        {{ gymClass.capacity - gymClass.bookings.length }}/{{
+          gymClass.capacity
+        }}
+      </p>
+      <button
+        *ngIf="gymClass.capacity > gymClass.bookings.length"
+        (click)="bookClass(gymClass)"
+      >
+        Book Now
+      </button>
+      <p *ngIf="gymClass.capacity === gymClass.bookings.length" class="full">
+        Class Full
+      </p>
+    </div>
+  </div>
+
+  <!-- Booked Classes -->
+  <h2>Your Bookings</h2>
+  <div class="your-bookings">
+    <div *ngFor="let booking of userBookings">
+      <p>
+        <strong>{{ booking.name }}</strong> - {{ booking.time }}
+      </p>
+      <button (click)="cancelBooking(booking)">Cancel</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="bg-color"></div>
+
+<main>
+  <div class="container">
+    <div class="top">
+      <div class="img-container">
+        <img src="../../../../assets/small.jpg" alt="" />
+      </div>
+      <div class="btn-container">
+        <button routerLink="/dashboard">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button>
+          <i class="fa-solid fa-pen-to-square"></i>
+        </button>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="basic-info">
+        <span class="name">John Wick</span>
+        <span class="username">~ tesseract</span>
+        <span>johnwick&#64;jmail.com</span>
+      </div>
+
+      <div class="health-tracking">
+        <div class="scroll-indicator">↓ Scroll down</div>
+
+        <div class="goal-container">
+          <div class="goal-card">
+            <h3><i class="fas fa-trophy"></i> My Badges</h3>
+            <owl-carousel-o [options]="carouselOptions">
+              <ng-container *ngFor="let badge of badges">
+                <ng-template carouselSlide>
+                  <span class="badge">
+                    <i [class]="badge.icon"></i> {{ badge.name }}
+                  </span>
+                </ng-template>
+              </ng-container>
+            </owl-carousel-o>
+          </div>
+
+          <div class="goal-card">
+            <h3>Quote Of The Day</h3>
+            <span class="quote"
+              >Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Suscipit, a exercitationem neque sequi mollitia officiis porro
+              aliquam nihil nisi autem.</span
+            >
+          </div>
+          <div class="goal-card">
+            <h3>Daily Steps</h3>
+            <div class="progress-bar">
+              <div class="progress" style="width: 75%"></div>
+            </div>
+            <p>7,500 / 10,000 Steps</p>
+          </div>
+
+          <div class="goal-card">
+            <h3>Calories Burned</h3>
+            <div class="progress-bar">
+              <div class="progress" style="width: 60%"></div>
+            </div>
+            <p>1,200 / 2,000 kcal</p>
+          </div>
+
+          <div class="goal-card">
+            <h3>Weekly Workouts</h3>
+            <div class="progress-bar">
+              <div class="progress" style="width: 40%"></div>
+            </div>
+            <p>2 / 5 Sessions</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

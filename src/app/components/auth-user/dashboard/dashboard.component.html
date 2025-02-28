@@ -11,13 +11,20 @@
         <span>Next Payment: $99.99</span>
         <span>Auto-Renew: Enabled</span>
       </div>
-      <button>Manage Membership</button>
+      <button routerLink="/membership-management">Manage Membership</button>
     </div>
   </div>
 </section>
 
 <section class="upcoming-classes">
-  <h2>Upcoming Classes</h2>
+  <div class="upcoming-classes-header">
+    <div class="upcoming-classes-header-text">Upcoming Classes</div>
+    <div class="upcoming-classes-search-bar">
+      <i class="fa-solid fa-magnifying-glass"></i
+      ><input type="text" placeholder="Search..." />
+    </div>
+  </div>
+  <!-- when you click any tab here redirect to the your classes page -->
   <owl-carousel-o [options]="customOptions">
     <ng-container *ngFor="let booking of bookings">
       <ng-template carouselSlide>
@@ -46,4 +53,101 @@
       </ng-template>
     </ng-container>
   </owl-carousel-o>
+</section>
+
+<section class="notifications">
+  <h2>Notifications & Reminders</h2>
+
+  <div class="notif-container">
+    <!-- when you click on a tab, open a modal that allows you to clear all notifications, clear individual notifications, view all notifications page -->
+    <div class="tabs">
+      <div class="tab-header">Class Reminders</div>
+      <span class="notif-details">
+        <span class="notif-message"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae,
+          natus.</span
+        >
+        <span class="notif-time">1/11/2024</span>
+      </span>
+      <span class="notif-details">
+        <span class="notif-message"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae,
+          natus.</span
+        >
+        <span class="notif-time">1/11/2024</span>
+      </span>
+    </div>
+    <div class="tabs">
+      <div class="tab-header">Billing Alerts</div>
+      <span class="notif-details">
+        <span class="notif-message"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae,
+          natus.</span
+        >
+        <span class="notif-time">1/11/2024</span>
+      </span>
+    </div>
+    <div class="tabs">
+      <div class="tab-header">Promotions</div>
+      <span class="notif-details">
+        <span class="notif-message"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae,
+          natus.</span
+        >
+        <span class="notif-time">1/11/2024</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<section class="rewards">
+  <h2 class="rewards-title">Rewards & Challenges</h2>
+  <div class="rewards-row">
+    <div class="reward-box">
+      <h2><i class="fas fa-coins"></i> Loyalty Points</h2>
+      <p>You have <strong>850</strong> points</p>
+      <div class="progress-bar">
+        <div class="progress" style="width: 70%"></div>
+      </div>
+      <small>150 more points to your next reward!</small>
+    </div>
+
+    <div class="reward-box">
+      <h2><i class="fas fa-user-friends"></i> Referral Progress</h2>
+      <p>Referrals: <strong>3</strong> (Get 5 for a free class!)</p>
+      <div class="progress-bar">
+        <div class="progress" style="width: 60%"></div>
+      </div>
+      <button class="share-btn">
+        <i class="fas fa-share-alt"></i> Share Referral Link
+      </button>
+    </div>
+
+    <div class="reward-box">
+      <h2><i class="fas fa-trophy"></i> Badges & Challenges</h2>
+      <owl-carousel-o [options]="carouselOptions">
+        <ng-container *ngFor="let badge of badges">
+          <ng-template carouselSlide>
+            <span class="badge">
+              <i [class]="badge.icon"></i> {{ badge.name }}
+            </span>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+      <p>Challenge: <strong>Attend 10 classes this month</strong></p>
+      <div class="progress-bar">
+        <div class="progress" style="width: 40%"></div>
+      </div>
+      <small>4/10 classes completed</small>
+    </div>
+  </div>
+
+  <div class="reward-actions">
+    <button class="view-btn">
+      <i class="fas fa-gift"></i> View Full Rewards
+    </button>
+    <button class="claim-btn">
+      <i class="fas fa-check-circle"></i> Claim Rewards
+    </button>
+  </div>
 </section>

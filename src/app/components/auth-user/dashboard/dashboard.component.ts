@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from '../../../shared-components/header/header.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [HeaderComponent, CarouselModule, CommonModule],
+  imports: [HeaderComponent, CarouselModule, CommonModule, RouterLink],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
@@ -18,7 +19,7 @@ export class DashboardComponent {
       className: 'Yoga - Vinyasa Flow',
       date: 'March 12, 10:00 AM',
       location: 'Studio A',
-      status: 'Confirmed',
+      status: 'Canceled',
     },
     {
       instructor: 'Mark T.',
@@ -42,11 +43,38 @@ export class DashboardComponent {
     loop: true,
     margin: 10,
     nav: false,
-    dots: false,
+    dots: true,
     center: true,
     autoplay: true,
     autoplayTimeout: 3000,
+    autoplayHoverPause: true,
     smartSpeed: 600,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      600: {
+        items: 2,
+      },
+      1000: {
+        items: 3,
+      },
+    },
+  };
+
+  badges = [
+    { name: '5-Class Streak', icon: 'fas fa-medal' },
+    { name: 'Fitness Warrior', icon: 'fas fa-star' },
+    { name: 'Elite Member', icon: 'fas fa-crown' },
+    { name: 'Challenge Champ', icon: 'fas fa-trophy' },
+  ];
+
+  carouselOptions = {
+    loop: true,
+    margin: 10,
+    dots: false,
+    autoplay: true,
+    autoplayTimeout: 3000,
     responsive: {
       0: { items: 1 },
       600: { items: 2 },

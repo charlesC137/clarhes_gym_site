@@ -91,7 +91,7 @@
 
 .no-classes {
   padding: 10px;
-  background: #f60a0a;
+  background: var(--red-bg);
   border-radius: 5px;
   margin-top: 5px;
 }

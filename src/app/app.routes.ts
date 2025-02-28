@@ -11,6 +11,9 @@ import { ClassScheduleComponent } from './components/public/class-schedule/class
 import { LoginComponent } from './components/public/login/login.component';
 import { SignupComponent } from './components/public/signup/signup.component';
 import { DashboardComponent } from './components/auth-user/dashboard/dashboard.component';
+import { ProfileComponent } from './components/auth-user/profile/profile.component';
+import { MembershipManagementComponent } from './components/auth-user/membership-management/membership-management.component';
+import { BookClassComponent } from './components/auth-user/book-class/book-class.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -26,6 +29,9 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'membership-management', component: MembershipManagementComponent },
+  { path: 'book', component: BookClassComponent },
 
   //set routes above
   { path: '**', redirectTo: '' },

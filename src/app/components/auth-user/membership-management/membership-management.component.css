@@ -1,0 +1,133 @@
+.membership-container {
+  width: 100%;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 15px rgba(0, 163, 255, 0.2);
+  text-align: center;
+}
+
+.top {
+  width: 100%;
+  height: 150px;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 10px rgba(0, 163, 255, 0.3);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background: linear-gradient(45deg, #1a1a1a, #0f172a, #004466, #134e4a);
+  background-size: 300% 300%;
+  animation: gradientFlow 10s infinite alternate ease-in-out;
+}
+
+.top button {
+  border: 0.5px solid white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.overview-header {
+  display: flex;
+  justify-content: space-around;
+}
+
+.gold {
+  color: var(--accent-color);
+}
+.cycle {
+  color: var(--secondary-color);
+}
+
+.progress-container {
+  margin-top: 10px;
+}
+
+.progress-bar {
+  width: 70%;
+  margin: auto;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent-color);
+  transition: width 0.5s ease-in-out;
+}
+
+.membership-actions {
+  margin-bottom: 20px;
+}
+
+.payment-details {
+  padding: 15px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  margin-bottom: 20px;
+}
+
+.support-section {
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 12px 20px;
+  margin: 10px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  min-width: 110px;
+}
+
+.btn-primary {
+  background: var(--secondary-color);
+  color: black;
+}
+.btn-secondary {
+  background: #ff6600;
+  color: black;
+}
+.btn-green {
+  background: var(--accent-color);
+  color: black;
+}
+.btn-danger {
+  background: #ff3131;
+  color: var(--light-gray);
+}
+
+.btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 640px) {
+  .btn {
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+
+  .overview-header {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}

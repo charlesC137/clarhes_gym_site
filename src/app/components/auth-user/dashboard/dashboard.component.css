@@ -12,7 +12,7 @@
 .greeting {
   font-size: 40px;
   font-weight: 700;
-  max-width: 500px;
+  width: 500px;
   padding-right: 70px;
   border-right: 0.5px solid var(--light-gray);
 }
@@ -22,8 +22,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
+  max-width: 100%;
+  flex: 1;
+  box-sizing: border-box;
+}
+
+.membership-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .membership-status-header {
@@ -32,14 +44,11 @@
   margin-bottom: 20px;
 }
 
-.membership-details,
 .membership-details div {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.membership-details div {
+  box-sizing: border-box;
   row-gap: 10px;
 }
 
@@ -51,7 +60,6 @@
   font-weight: 700;
   width: 300px;
   height: 50px;
-
   transition: all 0.3s;
 }
 
@@ -66,7 +74,6 @@
     var(--primary-color),
     var(--secondary-color)
   );
-
   background-size: 300% 300%;
   animation: gradientFlow 10s infinite ease-in-out alternate-reverse;
 }
@@ -84,12 +91,45 @@
 }
 
 .upcoming-classes {
-  margin-top: 50px;
+  margin: 50px;
 }
 
-.upcoming-classes h2 {
-  margin-left: auto;
-  margin-right: auto;
+.upcoming-classes-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.upcoming-classes-header-text,
+.notifications h2,
+.rewards-title {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.upcoming-classes-search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+}
+
+.upcoming-classes-search-bar input {
+  width: 100%;
+  padding: 10px 35px 10px 40px;
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: transparent;
+  color: var(--light-gray);
+}
+
+.upcoming-classes-search-bar i {
+  position: absolute;
+  left: 12px;
+  color: white;
+  font-size: 16px;
 }
 
 ::ng-deep .owl-stage {
@@ -104,7 +144,9 @@
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -139,22 +181,30 @@
 
 .confirmed {
   background: #28a745;
-  color: white;
+  color: var(--light-gray);
 }
+
 .waitlisted {
   background: #ffc107;
-  color: black;
+  color: var(--light-black);
 }
+
 .canceled {
-  background: #dc3545;
-  color: white;
+  background: var(--red-bg);
+  color: var(--light-gray);
+}
+
+.actions {
+  margin-top: 15px;
 }
 
 .actions button {
   margin: 5px;
-  padding: 8px 12px;
+  padding: 4px 9px;
   border: none;
-  cursor: pointer;
+  color: var(--light-gray);
+  border-radius: 4px;
+  transition: all 0.3s;
 }
 
 .actions button:hover {
@@ -162,6 +212,280 @@
 }
 
 ::ng-deep .owl-item.active.center .booking-card {
-  transform: scale(1.2);
+  transform: scale(1.15);
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.notifications {
+  margin: 50px;
+}
+
+.notif-container {
+  background: linear-gradient(135deg, #000000, #ac0aac);
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+  overflow: hidden;
+}
+
+.tabs {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 163, 255, 0.3);
+  flex: 1;
+  min-width: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.tabs:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 15px rgba(57, 255, 20, 0.5);
+}
+
+.tab-header {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--secondary-color);
+  margin-bottom: 30px;
+}
+
+.notif-message {
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 75%;
+}
+
+.notif-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.notif-time {
+  color: var(--accent-color);
+  font-size: 0.85rem;
+}
+
+.rewards {
+  background: var(--primary-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  color: var(--text-color);
+  margin: 50px;
+}
+
+.rewards-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.reward-box {
+  background: #222;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.reward-box h2 {
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: var(--secondary-color);
+}
+
+.reward-box p {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.progress-bar {
+  background: #333;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 5px 0;
+}
+
+.progress {
+  height: 8px;
+  background: var(--accent-color);
+}
+
+.share-btn,
+.view-btn,
+.claim-btn {
+  background: var(--secondary-color);
+  color: var(--light-gray);
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+
+  transition: all 0.3s;
+}
+
+.rewards i {
+  transition: all 0.3s;
+}
+
+.share-btn:hover,
+.view-btn:hover,
+.claim-btn:hover {
+  background: var(--accent-color);
+  color: var(--light-black);
+}
+
+.share-btn:hover i,
+.view-btn:hover i,
+.claim-btn:hover i {
+  color: black;
+}
+
+.badges {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.badge {
+  background: var(--accent-color);
+  color: var(--light-black);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.badge i {
+  color: var(--light-black);
+}
+
+.reward-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.view-btn,
+.claim-btn {
+  flex: 1;
+}
+
+@media (max-width: 640px) {
+  .overview {
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    justify-content: center;
+  }
+
+  .greeting {
+    border-right: none;
+    width: 100%;
+    padding-right: 0;
+    padding-bottom: 70px;
+    border-bottom: 0.5px solid var(--light-gray);
+    box-sizing: border-box;
+  }
+
+  .membership-status {
+    box-sizing: border-box;
+    padding: 20px 0;
+    max-width: 100%;
+  }
+
+  .membership-status button {
+    width: 100%;
+  }
+
+  ::ng-deep .owl-item.active.center .booking-card {
+    transform: scale(1);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    padding: initial;
+  }
+
+  .upcoming-classes,
+  .notifications {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .upcoming-classes-header {
+    flex-direction: column;
+    justify-content: initial;
+    row-gap: 20px;
+  }
+
+  .tabs,
+  .reward-box {
+    min-width: none;
+    padding: 15px 10px;
+  }
+
+  .tabs:hover {
+    transform: none;
+  }
+
+  .notif-container {
+    padding: 0;
+  }
+
+  .rewards {
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding: 0;
+  }
+
+  .rewards-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .reward-box {
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .reward-actions {
+    flex-direction: column;
+  }
 }
