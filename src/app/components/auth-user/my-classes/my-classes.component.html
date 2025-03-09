@@ -1,0 +1,60 @@
+<app-header></app-header>
+
+<app-hero-banner title="My Classes"></app-hero-banner>
+
+<div class="my-classes-container">
+  <div class="search-bar">
+    <i class="fa-solid fa-magnifying-glass"></i
+    ><input
+      type="text"
+      placeholder="Search by class or trainer..."
+      [(ngModel)]="searchQuery"
+    />
+  </div>
+  <!-- Carousel for Classes -->
+  <owl-carousel-o [options]="carouselOptions">
+    <ng-container *ngFor="let classItem of filteredClasses()">
+      <ng-template carouselSlide>
+        <div class="class-card" [ngClass]="classItem.status">
+          <h3>{{ classItem.name }}</h3>
+          <p><strong>Trainer:</strong> {{ classItem.trainer }}</p>
+          <p>
+            <strong>Date:</strong> {{ classItem.date }} at {{ classItem.time }}
+          </p>
+          <p><strong>Location:</strong> {{ classItem.location }}</p>
+          <p class="description">{{ classItem.description }}</p>
+
+          <!-- Status Badge -->
+          <span class="status-badge" [ngClass]="classItem.status">
+            {{ classItem.status | uppercase }}
+          </span>
+
+          <!-- Actions -->
+          <div class="actions">
+            <button
+              *ngIf="classItem.status === 'upcoming'"
+              (click)="cancelClass(classItem.id)"
+              class="cancel-btn"
+            >
+              Cancel
+            </button>
+            <button
+              *ngIf="classItem.status === 'upcoming'"
+              (click)="rescheduleClass(classItem.id)"
+              class="reschedule-btn"
+            >
+              Reschedule
+            </button>
+            <button
+              *ngIf="classItem.status === 'upcoming'"
+              (click)="markAsAttended(classItem.id)"
+              class="attended-btn"
+            >
+              Mark as Attended
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</div>

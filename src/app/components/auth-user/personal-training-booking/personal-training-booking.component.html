@@ -1,0 +1,48 @@
+<div class="booking-container">
+  <h2>Book a Personal Training Session</h2>
+
+  <div class="trainer-selection">
+    <label>Select Trainer:</label>
+    <select [(ngModel)]="selectedTrainer">
+      <option *ngFor="let trainer of trainers" [value]="trainer">
+        {{ trainer.name }}
+      </option>
+    </select>
+  </div>
+
+  <div class="session-details">
+    <label>Choose Date:</label>
+    <input
+      type="date"
+      [(ngModel)]="selectedDate"
+      (change)="loadAvailableSlots()"
+    />
+
+    <label>Select Time Slot:</label>
+    <select [(ngModel)]="selectedTime">
+      <option *ngFor="let slot of availableSlots" [value]="slot">
+        {{ slot }}
+      </option>
+    </select>
+
+    <label>Session Type:</label>
+    <select [(ngModel)]="selectedSessionType">
+      <option *ngFor="let type of sessionTypes" [value]="type">
+        {{ type }}
+      </option>
+    </select>
+
+    <label>Duration:</label>
+    <select [(ngModel)]="selectedDuration">
+      <option *ngFor="let duration of sessionDurations" [value]="duration">
+        {{ duration }} min
+      </option>
+    </select>
+  </div>
+
+  <button (click)="bookSession()">Confirm Booking</button>
+
+  <div *ngIf="confirmationMessage" class="confirmation">
+    {{ confirmationMessage }}
+  </div>
+</div>

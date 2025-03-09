@@ -49,7 +49,7 @@ export class HomeComponent {
       user: 'Mike D',
     },
     {
-      image: '../../../../assets/12.jpg',
+      image: '../../../../assets/10.jpg',
       text: '"Best decision I ever made. The transformation programs are next level!"',
       user: 'Mike D',
     },

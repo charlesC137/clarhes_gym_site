@@ -1,0 +1,52 @@
+.booking-container {
+  background: var(--primary-color);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: auto;
+}
+
+h2 {
+  color: var(--secondary-color);
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+select,
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  background: #222;
+  color: white;
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  background: var(--accent-color);
+  color: black;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background: #2dbb10;
+}
+
+.confirmation {
+  margin-top: 15px;
+  padding: 10px;
+  background: #1f1f1f;
+  border: 1px solid var(--accent-color);
+  border-radius: 5px;
+}

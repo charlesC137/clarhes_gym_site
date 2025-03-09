@@ -14,8 +14,11 @@ import { DashboardComponent } from './components/auth-user/dashboard/dashboard.c
 import { ProfileComponent } from './components/auth-user/profile/profile.component';
 import { MembershipManagementComponent } from './components/auth-user/membership-management/membership-management.component';
 import { BookClassComponent } from './components/auth-user/book-class/book-class.component';
+import { MyClassesComponent } from './components/auth-user/my-classes/my-classes.component';
+import { PersonalTrainingBookingComponent } from './components/auth-user/personal-training-booking/personal-training-booking.component';
 
 export const routes: Routes = [
+  //general links
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutUsComponent },
   { path: 'contact', component: ContactUsComponent },
@@ -26,12 +29,18 @@ export const routes: Routes = [
   { path: 'blog', component: BlogComponent },
   //down here do blog/:id then link to postcomponent or sumn http://localhost:4200/blog/2
   { path: 'schedule', component: ClassScheduleComponent },
+
+  //login/signup
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+
+  //auth links
   { path: 'dashboard', component: DashboardComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'membership-management', component: MembershipManagementComponent },
   { path: 'book', component: BookClassComponent },
+  { path: 'my-classes', component: MyClassesComponent },
+  { path: 'personal-training', component: PersonalTrainingBookingComponent },
 
   //set routes above
   { path: '**', redirectTo: '' },

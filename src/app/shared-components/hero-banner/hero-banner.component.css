@@ -1,7 +1,7 @@
 .banner {
   margin-top: 70px;
   background: url("../../../assets/13.jpg") center/cover no-repeat;
-  padding: 100px 20px;
+  padding: 100px 50px;
   position: relative;
   max-width: 100%;
   min-height: 200px;
@@ -33,10 +33,15 @@
   z-index: 1;
 }
 
+.banner h1 {
+  width: 100%;
+}
+
 .banner div {
   font-size: 17px;
   font-weight: 500;
   line-height: 30px;
   color: var(--light-gray);
   text-align: center;
+  padding-left: 20px;
 }
