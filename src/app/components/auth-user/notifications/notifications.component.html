@@ -1,0 +1,38 @@
+<app-header></app-header>
+
+<div class="notifications-wrapper">
+  <div class="header">
+    <h2>Notifications ({{ unreadCount() }})</h2>
+    <div class="actions">
+      <button (click)="markAllRead()">Mark All as Read</button>
+      <button (click)="clearAll()">Clear All</button>
+    </div>
+  </div>
+
+  <div class="filters">
+    <button (click)="setFilter('all')">All</button>
+    <button (click)="setFilter('class')">Class</button>
+    <button (click)="setFilter('membership')">Membership</button>
+    <button (click)="setFilter('waitlist')">Waitlist</button>
+    <button (click)="setFilter('promotion')">Promotions</button>
+  </div>
+
+  <div class="notification-list">
+    <div
+      *ngFor="let n of filteredNotifications()"
+      class="notification"
+      [class.unread]="!n.read"
+    >
+      <div class="info">
+        <h3>{{ n.title }}</h3>
+        <p>{{ n.message }}</p>
+        <small>{{ n.time | date : "shortTime" }}</small>
+      </div>
+      <div class="buttons">
+        <button (click)="markAsRead(n.id)">✓</button>
+        <button (click)="snooze(n.id)">Snooze</button>
+        <button (click)="dismiss(n.id)">✕</button>
+      </div>
+    </div>
+  </div>
+</div>

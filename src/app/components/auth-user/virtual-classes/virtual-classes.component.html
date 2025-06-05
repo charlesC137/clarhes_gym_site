@@ -1,0 +1,71 @@
+<app-header></app-header>
+
+<div class="virtual-classes-container">
+  <div class="header">
+    <h2>Virtual & On-Demand Classes</h2>
+
+    <div class="search-bar">
+      <i class="fa-solid fa-magnifying-glass"></i
+      ><input
+        type="text"
+        placeholder="Search by classes..."
+        [(ngModel)]="searchQuery"
+      />
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button [class.active]="activeTab === 'live'" (click)="activeTab = 'live'">
+      Live Classes
+    </button>
+    <button
+      [class.active]="activeTab === 'on-demand'"
+      (click)="activeTab = 'on-demand'"
+    >
+      On-Demand
+    </button>
+  </div>
+
+  <div class="filters">
+    <select [(ngModel)]="selectedCategory">
+      <option value="">All Categories</option>
+      <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+    </select>
+
+    <select [(ngModel)]="selectedLevel">
+      <option value="">All Levels</option>
+      <option *ngFor="let level of levels" [value]="level">{{ level }}</option>
+    </select>
+  </div>
+
+  <div class="class-grid">
+    <div *ngFor="let c of filteredClasses()" class="class-card">
+      <img [src]="c.thumbnail" alt="class thumbnail" />
+      <div class="overlay">
+        <h3>{{ c.title }}</h3>
+        <p>{{ c.instructor }} • {{ c.duration }} min</p>
+
+        <div class="thumbnail-container">
+          <span class="badge" *ngIf="c.live">LIVE</span>
+          <button class="primary-btn" (click)="openModal(c)">
+            Watch Preview
+          </button>
+          <button class="secondary-btn">Join Now</button>
+        </div>
+      </div>
+      <div class="progress" *ngIf="c.progress">
+        <div class="progress-bar" [style.width.%]="c.progress"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" *ngIf="selectedClass">
+    <div class="modal-content">
+      <span class="close" (click)="selectedClass = null">&times;</span>
+      <h3>{{ selectedClass.title }}</h3>
+      <video width="100%" controls [src]="selectedClass.videoUrl"></video>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,88 @@
+<app-header></app-header>
+
+<div class="top">
+  <h2>Payments & Billing</h2>
+</div>
+
+<div class="billing-container">
+  <div class="sidebar">
+    <button (click)="setTab('subscription')">Subscription</button>
+    <button (click)="setTab('payments')">Payment History</button>
+    <button (click)="setTab('methods')">Saved Cards</button>
+    <button (click)="setTab('invoices')">Invoices</button>
+    <button (click)="setTab('refunds')">Refund Requests</button>
+    <button (click)="setTab('billing-info')">Billing Info</button>
+  </div>
+
+  <div class="content">
+    <div *ngIf="activeTab === 'subscription'" class="tab-content">
+      <h2>Current Plan</h2>
+      <p><strong>Plan:</strong> {{ subscriptions.plan }}</p>
+      <p><strong>Status:</strong> {{ subscriptions.status }}</p>
+      <p><strong>Start Date:</strong> {{ subscriptions.startDate }}</p>
+      <p><strong>Renewal Date:</strong> {{ subscriptions.renewalDate }}</p>
+      <p><strong>Next Payment:</strong> ${{ subscriptions.nextPayment }}</p>
+      <button class="primary-btn">Upgrade Plan</button>
+      <button class="cancel-btn">Cancel Subscription</button>
+    </div>
+
+    <div *ngIf="activeTab === 'payments'" class="tab-content">
+      <h2>Payment History</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Invoice</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let payment of paymentHistory">
+            <td>{{ payment.date }}</td>
+            <td>${{ payment.amount }}</td>
+            <td>{{ payment.status }}</td>
+            <td>
+              <a href="#" class="text">Download ({{ payment.invoiceId }})</a>
+              <a href="#" class="icon"><i class="fas fa-download"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="activeTab === 'methods'" class="tab-content">
+      <h2>Saved Payment Methods</h2>
+      <div *ngFor="let card of savedCards" class="card">
+        <p>{{ card.type }} - {{ card.number }}</p>
+        <p>Expires: {{ card.expiry }}</p>
+        <p *ngIf="card.default">(Default)</p>
+        <button class="primary-btn">Remove</button>
+      </div>
+      <button class="secondary-btn">Add New Card</button>
+    </div>
+
+    <div *ngIf="activeTab === 'invoices'" class="tab-content">
+      <h2>Invoices</h2>
+      <p><i>Use search and filters here</i></p>
+    </div>
+
+    <div *ngIf="activeTab === 'refunds'" class="tab-content">
+      <h2>Refund Requests</h2>
+      <div *ngFor="let refund of refundRequests">
+        <p><strong>Invoice:</strong> {{ refund.invoiceId }}</p>
+        <p><strong>Reason:</strong> {{ refund.reason }}</p>
+        <p><strong>Status:</strong> {{ refund.status }}</p>
+      </div>
+      <button class="secondary-btn">Request Refund</button>
+    </div>
+
+    <div *ngIf="activeTab === 'billing-info'" class="tab-content">
+      <h2>Billing Information</h2>
+      <p><strong>Name:</strong> {{ billingInfo.fullName }}</p>
+      <p><strong>Email:</strong> {{ billingInfo.email }}</p>
+      <p><strong>Address:</strong> {{ billingInfo.address }}</p>
+      <button>Edit Info</button>
+    </div>
+  </div>
+</div>

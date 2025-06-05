@@ -1,0 +1,72 @@
+<app-header></app-header>
+
+<app-hero-banner title="Loyalty & Rewards"></app-hero-banner>
+
+<div class="loyalty-container">
+  <section class="points-summary">
+    <h3>Your Points: {{ userPoints }}</h3>
+    <p>
+      Earn points by working out, referring friends, or completing challenges.
+    </p>
+  </section>
+
+  <section class="badges">
+    <h3>Earned Badges</h3>
+
+    <owl-carousel-o [options]="badgeCarouselOptions">
+      <ng-container *ngFor="let badge of earnedBadges">
+        <ng-template carouselSlide>
+          <div class="badge-carousel-card" [title]="badge.description">
+            <i class="fas fa-dumbbell"></i>
+            <span>{{ badge.name }}</span>
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </section>
+
+  <section class="referral">
+    <h3>Referral Program</h3>
+    <p>
+      You’ve referred <strong>{{ referrals }}</strong> friends.
+    </p>
+    <input type="text" [value]="referralCode" readonly />
+    <button (click)="copyReferral()">Copy Code</button>
+    <p *ngIf="copyMessage">{{ copyMessage }}</p>
+  </section>
+
+  <section class="challenges">
+    <h3>Challenge Progress</h3>
+    <div *ngFor="let challenge of challenges" class="challenge">
+      <div class="challenge-header">
+        <span>{{ challenge.name }}</span>
+        <span>{{ challenge.progress }}%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress" [style.width.%]="challenge.progress"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rewards Catalog -->
+  <section class="rewards">
+    <h3>Rewards Catalog</h3>
+    <div class="reward-grid">
+      <div *ngFor="let reward of rewards" class="reward-card">
+        <h4>{{ reward.name }}</h4>
+        <p>{{ reward.points }} pts</p>
+        <button
+          [disabled]="userPoints < reward.points"
+          (click)="redeemReward(reward)"
+        >
+          Redeem
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Notification -->
+  <div *ngIf="notification" class="notification">
+    {{ notification }}
+  </div>
+</div>

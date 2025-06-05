@@ -1,0 +1,89 @@
+.notifications-wrapper {
+  background: var(--primary-color);
+  color: white;
+  padding: 1rem;
+  max-width: 800px;
+  margin: auto;
+  border-radius: 8px;
+  margin-top: 70px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actions button {
+  background: var(--secondary-color);
+  margin-left: 0.5rem;
+  padding: 5px 10px;
+  border-radius: 3px;
+  color: white;
+}
+
+.filters {
+  margin: 1rem 0;
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: scroll;
+}
+
+.filters button {
+  background: #333;
+  color: white;
+  border: 1px solid var(--secondary-color);
+  padding: 5px 10px;
+}
+
+.notification-list {
+  max-height: 400px;
+  overflow-y: auto;
+  border-top: 1px solid #333;
+  background-color: var(--light-black);
+}
+
+.notification {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  border-bottom: 1px solid #333;
+  margin-bottom: 5px;
+  padding: 15px;
+}
+
+.notification.unread {
+  border-left: 4px solid var(--accent-color);
+  padding-left: 10px;
+}
+
+.notification .buttons button {
+  background: transparent;
+  color: var(--secondary-color);
+  border: none;
+  margin-left: 5px;
+}
+
+.notification .buttons button:hover {
+  color: var(--accent-color);
+}
+
+@media (max-width: 640px) {
+  .actions {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  .actions button {
+    margin-left: 0;
+  }
+
+  .notification {
+    flex-direction: column;
+  }
+
+  .buttons {
+    margin-top: 10px;
+  }
+}

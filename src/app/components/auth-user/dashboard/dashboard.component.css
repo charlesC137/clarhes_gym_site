@@ -74,8 +74,8 @@
     var(--primary-color),
     var(--secondary-color)
   );
-  background-size: 300% 300%;
-  animation: gradientFlow 10s infinite ease-in-out alternate-reverse;
+  background-size: 500% 500%;
+  animation: gradientFlow 20s infinite ease-in-out alternate-reverse;
 }
 
 @keyframes gradientFlow {

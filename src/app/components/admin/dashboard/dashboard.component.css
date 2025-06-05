@@ -1,0 +1,117 @@
+.dashboard-container {
+  padding: 2rem;
+  margin-top: 70px;
+}
+
+.card,
+.chart-card,
+.list-card {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  margin: 1rem;
+  border-radius: 8px;
+  flex: 1;
+}
+
+.top-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.charts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.lists {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.dummy-chart {
+  background: linear-gradient(
+    135deg,
+    var(--secondary-color),
+    var(--accent-color)
+  );
+  height: 150px;
+  border-radius: 6px;
+}
+
+.label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--secondary-color);
+}
+
+.alerts li {
+  color: var(--accent-color);
+}
+
+.quick-actions {
+  margin-top: 2rem;
+}
+
+button {
+  margin: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn-primary {
+  background-color: var(--secondary-color);
+  color: #000;
+}
+
+.btn-secondary {
+  background-color: var(--accent-color);
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .top-summary,
+  .charts,
+  .lists {
+    flex-direction: column;
+  }
+}
+
+.overview {
+  margin-left: 50px;
+  margin-right: 50px;
+  border-radius: 10px;
+  padding: 40px;
+  background-color: var(--light-black);
+  display: flex;
+  align-items: center;
+}
+
+.gradient-bg {
+  background: radial-gradient(
+    circle,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  background-size: 500% 500%;
+  animation: gradientFlow 20s infinite ease-in-out alternate-reverse;
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

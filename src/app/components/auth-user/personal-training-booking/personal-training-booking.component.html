@@ -1,16 +1,35 @@
-<div class="booking-container">
-  <h2>Book a Personal Training Session</h2>
+<app-header></app-header>
 
-  <div class="trainer-selection">
-    <label>Select Trainer:</label>
-    <select [(ngModel)]="selectedTrainer">
-      <option *ngFor="let trainer of trainers" [value]="trainer">
-        {{ trainer.name }}
-      </option>
-    </select>
-  </div>
+<app-hero-banner title="Personal Training Booking"></app-hero-banner>
 
+<div class="search-bar">
+  <i class="fas fa-search"></i>
+  <input type="text" placeholder="Search..." />
+</div>
+
+<div class="trainer-carousel-container">
+  <owl-carousel-o [options]="carouselOptions">
+    <ng-container *ngFor="let trainer of trainers">
+      <ng-template carouselSlide>
+        <div
+          class="trainer-card"
+          (click)="selectTrainer(trainer)"
+          [class.selected]="selectedTrainer?.name === trainer.name"
+        >
+          <img [src]="trainer.photo" alt="{{ trainer.name }}" />
+          <h3>{{ trainer.name }}</h3>
+          <p class="specialty">{{ trainer.specialty }}</p>
+          <p class="tagline">{{ trainer.tagline }}</p>
+          <button class="more-info-btn">More Info</button>
+        </div>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</div>
+
+<div class="booking-container" [class.active]="selectedTrainer">
   <div class="session-details">
+    <p>Selected Trainer: {{ selectedTrainer?.name }}</p>
     <label>Choose Date:</label>
     <input
       type="date"
