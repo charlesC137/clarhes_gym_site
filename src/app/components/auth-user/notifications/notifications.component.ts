@@ -1,6 +1,4 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from '../../../shared-components/header/header.component';
 
 interface Notification {
   id: number;
@@ -14,8 +12,6 @@ interface Notification {
 
 @Component({
   selector: 'app-notifications',
-  standalone: true,
-  imports: [CommonModule, HeaderComponent],
   templateUrl: './notifications.component.html',
   styleUrl: './notifications.component.css',
 })

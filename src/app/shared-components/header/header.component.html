@@ -11,7 +11,7 @@
 </div>
 
 <div class="right">
-  <a routerLink="/notifications" *ngIf="isAuth" class="profile-icon">
+  <a routerLink="/user/notifications" *ngIf="isAuth" class="profile-icon">
     <i class="fa fa-user"></i>
     <span class="badge" *ngIf="messageCount > 0">{{ messageCount }}</span>
   </a>

@@ -1,20 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HeaderComponent } from '../../../shared-components/header/header.component';
-import { HeroBannerComponent } from '../../../shared-components/hero-banner/hero-banner.component';
-import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-personal-training-booking',
-  standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    HeaderComponent,
-    HeroBannerComponent,
-    CarouselModule,
-  ],
   templateUrl: './personal-training-booking.component.html',
   styleUrl: './personal-training-booking.component.css',
 })

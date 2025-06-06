@@ -1,18 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../../../shared-components/header/header.component';
-import { FooterComponent } from '../../../shared-components/footer/footer.component';
-import { HeroBannerComponent } from '../../../shared-components/hero-banner/hero-banner.component';
 
 @Component({
   selector: 'app-faqs',
-  standalone: true,
-  imports: [
-    CommonModule,
-    HeaderComponent,
-    FooterComponent,
-    HeroBannerComponent,
-  ],
   templateUrl: './faqs.component.html',
   styleUrl: './faqs.component.css',
 })

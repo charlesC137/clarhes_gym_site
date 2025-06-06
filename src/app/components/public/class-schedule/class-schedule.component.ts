@@ -1,20 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HeaderComponent } from '../../../shared-components/header/header.component';
-import { FooterComponent } from '../../../shared-components/footer/footer.component';
-import { HeroBannerComponent } from '../../../shared-components/hero-banner/hero-banner.component';
 
 @Component({
   selector: 'app-class-schedule',
-  standalone: true,
-  imports: [
-    FormsModule,
-    CommonModule,
-    HeaderComponent,
-    FooterComponent,
-    HeroBannerComponent,
-  ],
   templateUrl: './class-schedule.component.html',
   styleUrl: './class-schedule.component.css',
 })

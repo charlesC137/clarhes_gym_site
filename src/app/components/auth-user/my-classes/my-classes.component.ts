@@ -1,20 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
-import { HeaderComponent } from '../../../shared-components/header/header.component';
-import { HeroBannerComponent } from '../../../shared-components/hero-banner/hero-banner.component';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-my-classes',
-  standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    CarouselModule,
-    HeaderComponent,
-    HeroBannerComponent,
-  ],
   templateUrl: './my-classes.component.html',
   styleUrl: './my-classes.component.css',
 })

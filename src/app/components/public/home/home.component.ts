@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../../../shared-components/header/header.component';
-import { FooterComponent } from '../../../shared-components/footer/footer.component';
-import { CarouselModule } from 'ngx-owl-carousel-o';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  standalone: true,
-  imports: [HeaderComponent, FooterComponent, CarouselModule, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

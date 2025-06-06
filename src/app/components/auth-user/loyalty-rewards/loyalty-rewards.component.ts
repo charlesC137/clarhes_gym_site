@@ -1,13 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { HeroBannerComponent } from '../../../shared-components/hero-banner/hero-banner.component';
-import { HeaderComponent } from '../../../shared-components/header/header.component';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-loyalty-rewards',
-  standalone: true,
-  imports: [CommonModule, HeroBannerComponent, HeaderComponent, CarouselModule],
   templateUrl: './loyalty-rewards.component.html',
   styleUrl: './loyalty-rewards.component.css',
 })

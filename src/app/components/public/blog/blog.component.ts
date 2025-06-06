@@ -1,22 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
-import { HeaderComponent } from '../../../shared-components/header/header.component';
-import { FooterComponent } from '../../../shared-components/footer/footer.component';
-import { HeroBannerComponent } from '../../../shared-components/hero-banner/hero-banner.component';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-blog',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterLink,
-    CarouselModule,
-    HeaderComponent,
-    FooterComponent,
-    HeroBannerComponent,
-  ],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css',
 })

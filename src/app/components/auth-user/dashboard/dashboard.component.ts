@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../../../shared-components/header/header.component';
-import { CarouselModule } from 'ngx-owl-carousel-o';
-import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true,
-  imports: [HeaderComponent, CarouselModule, CommonModule, RouterLink],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })

@@ -25,25 +25,25 @@ export class NavigationService {
 
   public loggedInBurger = {
     core: [
-      { name: 'Dashboard', path: '/dashboard' },
-      { name: 'My Profile', path: '/profile' },
-      { name: 'My Classes', path: '/my-classes' },
-      { name: 'Membership Management', path: '/membership-management' },
-      { name: 'Personal Training Booking', path: '/personal-training' },
-      { name: 'Virtual & On-Demand Classes', path: '/virtual-classes' },
+      { name: 'Dashboard', path: '/user/dashboard' },
+      { name: 'My Profile', path: '/user/profile' },
+      { name: 'My Classes', path: '/user/my-classes' },
+      { name: 'Membership Management', path: '/user/membership-management' },
+      { name: 'Personal Training Booking', path: '/user/personal-training' },
+      { name: 'Virtual & On-Demand Classes', path: '/user/virtual-classes' },
     ],
     more: [...this.loggedOutBurger],
   };
 
   public mobileLoggedInBurger = [
     ...this.pinnedLinks,
-    { name: 'Dashboard', path: '/dashboard' },
-    { name: 'My Profile', path: '/profile' },
-    { name: 'My Classes', path: '/my-classes' },
-    { name: 'Membership Management', path: '/membership-management' },
-    { name: 'Personal Training Booking', path: '/personal-training' },
-    { name: 'Virtual & On-Demand Classes', path: '/virtual-classes' },
-    { name: 'Book a Class', path: '/book' },
+    { name: 'Dashboard', path: '/user/dashboard' },
+    { name: 'My Profile', path: '/user/profile' },
+    { name: 'My Classes', path: '/user/my-classes' },
+    { name: 'Membership Management', path: '/user/membership-management' },
+    { name: 'Personal Training Booking', path: '/user/personal-training' },
+    { name: 'Virtual & On-Demand Classes', path: '/user/virtual-classes' },
+    { name: 'Book a Class', path: '/user/book' },
   ];
 
   public mobileLoggedOutBurger = [...this.pinnedLinks, ...this.loggedOutBurger];

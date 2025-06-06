@@ -1,20 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../../../shared-components/header/header.component';
-import { FooterComponent } from '../../../shared-components/footer/footer.component';
-import { HeroBannerComponent } from '../../../shared-components/hero-banner/hero-banner.component';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-trainers',
-  standalone: true,
-  imports: [
-    CommonModule,
-    HeaderComponent,
-    FooterComponent,
-    HeroBannerComponent,
-    RouterLink,
-  ],
   templateUrl: './trainers.component.html',
   styleUrl: './trainers.component.css',
 })
