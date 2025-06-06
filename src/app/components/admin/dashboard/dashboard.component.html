@@ -1,68 +1,213 @@
 <app-header></app-header>
 
 <div class="dashboard-container">
-  <section class="overview gradient-bg">
-    Split each card. Let it stand on its own
-    <div class="card">
-      <h3>Revenue</h3>
-      <p>$12,480 <span class="label">This Month</span></p>
+  <section class="overview">
+    <div class="overview-cards">
+      <div class="title">Revenue</div>
+      <div class="details">$13,430.05</div>
+      <div class="more-details">This Month</div>
     </div>
-    <div class="card">
-      <h3>Memberships</h3>
-      <p>328 <span class="label">Active</span></p>
+    <div class="overview-cards">
+      <div class="title">Memberships</div>
+      <div class="details">591</div>
+      <div class="more-details">Active</div>
     </div>
-    <div class="card">
-      <h3>Bookings</h3>
-      <p>582 <span class="label">This Week</span></p>
+    <div class="overview-cards">
+      <div class="title">Bookings</div>
+      <div class="details">421</div>
+      <div class="more-details">This Week</div>
     </div>
-    <div class="card">
-      <h3>Class Attendance</h3>
-      <p>71% <span class="label">Avg Rate</span></p>
-    </div>
-  </section>
-
-  <section class="charts">
-    <div class="chart-card">
-      <h4>New Members (Last 6 Months)</h4>
-      <div class="dummy-chart"></div>
-    </div>
-    <div class="chart-card">
-      <h4>Class Popularity</h4>
-      <div class="dummy-chart"></div>
+    <div class="overview-cards">
+      <div class="title">Class Attendance</div>
+      <div class="details">71.24%</div>
+      <div class="more-details">Avg Rate For This Month</div>
     </div>
   </section>
 
-  <section class="lists">
-    <div class="list-card">
-      <h4>Upcoming Classes</h4>
-      <ul>
-        <li>HIIT - Today, 5 PM</li>
-        <li>Yoga - Tomorrow, 7 AM</li>
-        <li>Spin Class - Friday, 6 PM</li>
-      </ul>
+  <h2>Key Analytics</h2>
+
+  <section class="key-analytics">
+    <div class="charts">
+      <canvas
+        baseChart
+        [data]="lineChartData"
+        [options]="lineChartOptions"
+        [legend]="true"
+        [type]="'line'"
+      >
+      </canvas>
     </div>
 
-    <div class="list-card">
-      <h4>Trainer Performance</h4>
-      <ul>
-        <li>Alex - 98% Attendance</li>
-        <li>Jade - 92% Attendance</li>
-        <li>Mike - 87% Attendance</li>
-      </ul>
-    </div>
-
-    <div class="list-card alerts">
-      <h4>Notifications</h4>
-      <ul>
-        <li class="alert">Low attendance for Zumba class.</li>
-        <li class="alert">New member sign-up!</li>
-      </ul>
+    <div class="chart-container">
+      <canvas
+        baseChart
+        [data]="pieChartData"
+        [options]="pieChartOptions"
+        [plugins]="pieChartPlugins"
+        [type]="'pie'"
+      >
+      </canvas>
     </div>
   </section>
 
-  <section class="quick-actions">
-    <button class="btn-primary">+ Add Member</button>
-    <button class="btn-secondary">+ Add Class</button>
-    <button class="btn-secondary">+ Create Promo</button>
+  <section class="analytics-table">
+    <button class="toggle-table" (click)="toggleAnalyticTable()">
+      Toggle Analytics Table<i
+        class="fas fa-chevron-right"
+        [ngClass]="{ show: showAnalyticsTable }"
+      ></i>
+    </button>
+
+    <table class="membership-table" [ngClass]="{ show: showAnalyticsTable }">
+      <thead>
+        <tr>
+          <th>Plan Name</th>
+          <th>Members</th>
+          <th>Status</th>
+          <th>Monthly Revenue</th>
+          <th>Avg. Duration</th>
+          <th>Churn Rate</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let plan of membershipPlans">
+          <td>{{ plan.name }}</td>
+          <td>{{ plan.members }}</td>
+          <td>
+            <span
+              [ngClass]="{
+                'status-active': plan.status === 'Active',
+                'status-inactive': plan.status === 'Inactive',
+                'status-trial': plan.status === 'Trial'
+              }"
+              >{{ plan.status }}</span
+            >
+          </td>
+          <td>${{ plan.monthlyRevenue.toFixed(2) }}</td>
+          <td>{{ plan.avgDuration }} months</td>
+          <td>{{ plan.churnRate }}%</td>
+          <td>
+            <button>View</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </section>
+
+  <h2>Class Attendance</h2>
+  <section>
+    <div class="filters">
+      <label>Trainer:</label>
+      <select [(ngModel)]="selectedTrainer">
+        <option value="">All</option>
+        <option *ngFor="let trainer of trainers">{{ trainer }}</option>
+      </select>
+
+      <label>Timeframe:</label>
+      <select [(ngModel)]="selectedTimeframe">
+        <option value="thisWeek">This Week</option>
+        <option value="lastWeek">Last Week</option>
+        <option value="custom">Custom</option>
+      </select>
+
+      <input
+        *ngIf="selectedTimeframe === 'custom'"
+        type="date"
+        [(ngModel)]="customDate"
+      />
+    </div>
+
+    <table class="attendance-table">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Trainer</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Capacity</th>
+          <th>Attended</th>
+          <th>Attendance %</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cls of filteredClasses">
+          <td>{{ cls.className }}</td>
+          <td>{{ cls.trainer }}</td>
+          <td>{{ cls.date }}</td>
+          <td>{{ cls.time }}</td>
+          <td>{{ cls.capacity }}</td>
+          <td>{{ cls.attended }}</td>
+          <td>{{ getAttendancePercentage(cls) }}%</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Recent Bookings</h2>
+  <section
+    style="
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      padding-bottom: 10px;
+    "
+  >
+    <div class="filters">
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass"></i
+        ><input
+          type="text"
+          placeholder="Search by name"
+          [(ngModel)]="searchName"
+        />
+      </div>
+      <select [(ngModel)]="selectedClass">
+        <option value="">All Classes</option>
+        <option *ngFor="let c of classes">{{ c }}</option>
+      </select>
+      <select [(ngModel)]="selectedStatus">
+        <option value="">All</option>
+        <option value="Attended">Attended</option>
+        <option value="No-show">No-show</option>
+      </select>
+    </div>
+
+    <table class="bookings-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Class</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Payment</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of filteredBookings">
+          <td>{{ booking.name }}</td>
+          <td>{{ booking.class }}</td>
+          <td>{{ booking.date }}</td>
+          <td>{{ booking.time }}</td>
+          <td>{{ booking.payment }}</td>
+          <td>
+            <span
+              [ngClass]="{
+                'status-attended': booking.status === 'Attended',
+                'status-no-show': booking.status === 'No-show'
+              }"
+              >{{ booking.status }}</span
+            >
+          </td>
+          <td>
+            <button (click)="markAttendance(booking, 'Attended')">✔️</button>
+            <button (click)="markAttendance(booking, 'No-show')">❌</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Quick Admin Tools</h2>
+  <section class="quick-link"></section>
 </div>
