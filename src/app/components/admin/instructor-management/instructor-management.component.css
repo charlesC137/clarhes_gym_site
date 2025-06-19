@@ -1,0 +1,149 @@
+.container {
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.filter-panel {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input,
+select {
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.instructor-card {
+  background-color: #222;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  display: flex;
+}
+
+.card-header {
+  display: flex;
+  width: 100%;
+}
+
+.profile {
+  position: relative;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-container {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.edit-icon {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background-color: var(--light-black);
+  border-radius: 50%;
+  padding: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-icon input[type="file"] {
+  display: none;
+}
+
+.card-header .info {
+  margin: 0 15px;
+}
+
+.card-header .actions button {
+  background-color: var(--secondary-color);
+  padding: 8px 12px;
+  color: #fff;
+  margin-left: 5px;
+  border-radius: 4px;
+}
+
+.card-header .actions button:hover {
+  background-color: var(--accent-color);
+  color: #000;
+}
+
+.active {
+  color: var(--accent-color);
+}
+
+.inactive {
+  color: red;
+}
+
+.schedule,
+.reviews {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--secondary-color);
+  margin-right: 20px;
+}
+
+.schedule select,
+.reviews input {
+  margin-bottom: 10px;
+}
+
+.schedule button,
+.reviews button {
+  margin-left: 10px;
+}
+
+button {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 5px 10px;
+  margin: 4px;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+button:hover {
+  background-color: var(--accent-color);
+  color: black;
+}
+
+.active {
+  color: var(--accent-color);
+}
+
+.inactive {
+  color: red;
+}
+
+@media (max-width: 1000px) {
+  .container {
+    padding: 20px 10px;
+  }
+
+  .filter-panel {
+    overflow-x: scroll;
+  }
+
+  .instructor-card {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: center;
+  }
+}

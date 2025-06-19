@@ -1,0 +1,86 @@
+<app-header></app-header>
+
+<div class="member-manager">
+  <h2>Manage Members</h2>
+  <div class="header">
+    <div class="search-bar">
+      <i class="fa-solid fa-magnifying-glass"></i
+      ><input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Search..."
+        (input)="applyFilters()"
+      />
+    </div>
+    <select [(ngModel)]="filterStatus" (change)="applyFilters()">
+      <option value="all">All</option>
+      <option value="active">Active</option>
+      <option value="suspended">Suspended</option>
+    </select>
+    <button (click)="openAddModal()">+ Add Member</button>
+    <button (click)="exportToCSV()">Export CSV</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Joined</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let member of filteredMembers">
+        <td>{{ member.name }}</td>
+        <td>{{ member.email }}</td>
+        <td
+          [class.active]="member.status === 'active'"
+          [class.suspended]="member.status === 'suspended'"
+        >
+          {{ member.status }}
+        </td>
+        <td>{{ member.joinDate }}</td>
+        <td>
+          <button (click)="openEditModal(member)">Edit</button>
+          <button (click)="toggleStatus(member)">
+            {{ member.status === "active" ? "Suspend" : "Activate" }}
+          </button>
+          <button (click)="deleteMember(member.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">Prev</button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+      Next
+    </button>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" *ngIf="showModal">
+    <div class="modal-content">
+      <h3>{{ editingMember ? "Edit" : "Add" }} Member</h3>
+      <label>
+        Name:
+        <input [(ngModel)]="newMember.name" />
+      </label>
+      <label>
+        Email:
+        <input [(ngModel)]="newMember.email" />
+      </label>
+      <label>
+        Phone:
+        <input [(ngModel)]="newMember.phone" />
+      </label>
+      <div class="modal-actions">
+        <button (click)="saveMember()">Save</button>
+        <button (click)="showModal = false">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

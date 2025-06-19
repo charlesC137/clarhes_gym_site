@@ -1,0 +1,95 @@
+<app-header></app-header>
+
+<div class="container">
+  <h2>Instructor Management</h2>
+
+  <div class="filter-panel">
+    <input
+      type="text"
+      placeholder="Search by name"
+      [(ngModel)]="searchTerm"
+      (input)="filterInstructors()"
+    />
+    <select [(ngModel)]="filterSpecialization" (change)="filterInstructors()">
+      <option value="">All Specializations</option>
+      <option *ngFor="let spec of specializations">{{ spec }}</option>
+    </select>
+    <button (click)="exportCSV()">Export CSV</button>
+  </div>
+
+  <div class="instructor-card" *ngFor="let instructor of filteredInstructors">
+    <div class="card-header">
+      <div class="profile">
+        <div class="img-container">
+          <img [src]="instructor.profileImage" alt="Instructor Image" />
+        </div>
+        <label class="edit-icon">
+          <i class="fas fa-pen-to-square"></i>
+          <input type="file" (change)="uploadImage($event, instructor)" />
+        </label>
+      </div>
+
+      <div class="info">
+        <h3>{{ instructor.name }}</h3>
+        <p>{{ instructor.email }}</p>
+        <p>Specialization: {{ instructor.specialization.join(", ") }}</p>
+        <p>
+          Status:
+          <span
+            [class.active]="instructor.isActive"
+            [class.inactive]="!instructor.isActive"
+          >
+            {{ instructor.isActive ? "Active" : "Inactive" }}
+          </span>
+        </p>
+        <p>Total Classes taught: <strong>1200</strong></p>
+        <p>Most Taught Class: Yoga</p>
+        <p>
+          Avg Rating:
+          {{ getAverageRating(instructor.reviews) | number : "1.1-1" }}
+        </p>
+      </div>
+
+      <div class="actions">
+        <button (click)="toggleStatus(instructor)">
+          {{ instructor.isActive ? "Deactivate" : "Activate" }}
+        </button>
+      </div>
+    </div>
+
+    <div class="schedule">
+      <h4>Schedule</h4>
+      <ul>
+        <li *ngFor="let s of instructor.schedule">
+          {{ s.day }} at {{ s.time }}
+        </li>
+      </ul>
+
+      <select [(ngModel)]="newClass.day">
+        <option value="">Day</option>
+        <option *ngFor="let d of days">{{ d }}</option>
+      </select>
+      <select [(ngModel)]="newClass.time">
+        <option value="">Time</option>
+        <option *ngFor="let t of times">{{ t }}</option>
+      </select>
+      <button (click)="assignClass(instructor)">Assign</button>
+    </div>
+
+    <div class="reviews">
+      <h4>Reviews</h4>
+      <ul>
+        <li *ngFor="let r of instructor.reviews">
+          "{{ r.comment }}" - {{ r.rating }}/5 ({{ r.date }})
+        </li>
+      </ul>
+      <input #comment placeholder="Add comment" />
+      <select #rating>
+        <option *ngFor="let r of [1, 2, 3, 4, 5]" [value]="r">{{ r }}</option>
+      </select>
+      <button (click)="addReview(instructor, comment.value, +rating.value)">
+        Submit
+      </button>
+    </div>
+  </div>
+</div>

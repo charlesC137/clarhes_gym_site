@@ -1,0 +1,96 @@
+<app-header></app-header>
+
+<div class="container">
+  <h1>Email & Marketing Campaigns</h1>
+
+  <!-- Campaign Form -->
+  <form (ngSubmit)="saveCampaign()" class="form">
+    <input
+      type="text"
+      placeholder="Campaign Name"
+      [(ngModel)]="form.name"
+      name="name"
+      required
+    />
+    <input
+      type="text"
+      placeholder="Subject"
+      [(ngModel)]="form.subject"
+      name="subject"
+    />
+
+    <select [(ngModel)]="form.audience" name="audience">
+      <option value="" disabled selected hidden>Select Audience</option>
+      <option *ngFor="let a of audiences">{{ a }}</option>
+    </select>
+
+    <textarea [(ngModel)]="form.body" name="body" rows="5"></textarea>
+
+    <input type="datetime-local" [(ngModel)]="form.schedule" name="schedule" />
+
+    <select [(ngModel)]="form.template" name="template">
+      <option *ngFor="let t of templates">{{ t }}</option>
+    </select>
+
+    <button type="submit">Save Campaign</button>
+  </form>
+
+  <!-- Preview -->
+  <div class="preview">
+    <h3>Live Preview</h3>
+    <div class="email-box">
+      <h4>{{ form.subject }}</h4>
+      <p [innerHTML]="renderPreview(form.body)"></p>
+    </div>
+  </div>
+
+  <!-- Campaign List -->
+  <div class="campaigns">
+    <h3>Campaigns</h3>
+    <div *ngFor="let c of campaigns; index as i" class="campaign">
+      <strong>{{ c.name }}</strong> - {{ c.status || "Scheduled" }}
+      <button (click)="editCampaign(i)">Edit</button>
+      <button (click)="deleteCampaign(i)">Delete</button>
+    </div>
+  </div>
+
+  <!-- Automation -->
+  <div class="automation">
+    <h3>Automations</h3>
+    <select [(ngModel)]="automationTrigger" class="spacing">
+      <option value="" disabled selected hidden>Select Trigger</option>
+      <option>Signup</option>
+      <option>No visit in 7 days</option>
+      <option>Class Completed</option>
+    </select>
+    <input
+      placeholder="Action (e.g., Send Email)"
+      #actionInput
+      class="spacing"
+    />
+    <button
+      (click)="addAutomationAction(actionInput.value); actionInput.value = ''"
+    >
+      Add Action
+    </button>
+
+    <ul>
+      <li *ngFor="let a of automationActions">
+        {{ automationTrigger }} → {{ a }}
+      </li>
+    </ul>
+  </div>
+
+  <!-- Reports -->
+  <div class="reports">
+    <h3>Performance</h3>
+    <canvas
+      baseChart
+      [data]="barChartData"
+      [options]="barChartOptions"
+      chartType="bar"
+    >
+    </canvas>
+    <button (click)="exportCSV()">Export as CSV</button>
+  </div>
+</div>

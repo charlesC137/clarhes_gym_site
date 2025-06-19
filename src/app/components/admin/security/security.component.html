@@ -1,0 +1,230 @@
+<app-header></app-header>
+
+<!-- <div class="security-container">
+  <h2>System Security & Compliance</h2>
+
+  <section>
+    <h3>Security Logs</h3>
+    <input
+      #searchInput
+      placeholder="Search logs..."
+      (input)="searchQuery = searchInput.value"
+    />
+    <button (click)="exportLogs()">Export Logs as CSV</button>
+
+    <table>
+      <tr>
+        <th>Time</th>
+        <th>User</th>
+        <th>Action</th>
+        <th>IP</th>
+      </tr>
+      <tr *ngFor="let log of filterLogs(searchQuery)">
+        <td>{{ log.timestamp }}</td>
+        <td>{{ log.user }}</td>
+        <td>{{ log.action }}</td>
+        <td>{{ log.ip }}</td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h3>IP Whitelisting</h3>
+    <label
+      >Select User:
+      <select [(ngModel)]="selectedUserIndex">
+        <option *ngFor="let user of users; let i = index" [value]="i">
+          {{ user.username }}
+        </option>
+      </select>
+    </label>
+    <ul>
+      <li *ngFor="let ip of users[selectedUserIndex].ipWhitelist">
+        {{ ip }} <button (click)="removeIP(ip)">Remove</button>
+      </li>
+    </ul>
+    <input [(ngModel)]="newIP" placeholder="Add IP" />
+    <button (click)="addIP()">Add IP</button>
+  </section>
+
+  <section>
+    <h3>Data Privacy Settings</h3>
+    <label>
+      <input type="checkbox" checked /> Enforce Data Retention (90 days) </label
+    ><br />
+    <label>
+      <input type="checkbox" /> Auto-Anonymize Inactive Users (after 180 days)
+    </label>
+  </section>
+
+  <section>
+    <h3>Security Notifications</h3>
+    <label> <input type="checkbox" checked /> Alert on New Device Login </label
+    ><br />
+    <label> <input type="checkbox" /> Alert on Password Changes </label><br />
+    <label> <input type="checkbox" /> Weekly Security Summary </label>
+  </section>
+</div> -->
+
+<div class="security-container">
+  <h2>System Security & Compliance</h2>
+
+  <!-- 🔍 Security Logs -->
+  <section>
+    <h3>Security Logs</h3>
+    <input
+      #searchInput
+      placeholder="Search logs..."
+      (input)="searchQuery = searchInput.value"
+    />
+    <button (click)="exportLogs()">Export Logs as CSV</button>
+
+    <table>
+      <tr>
+        <th>Time</th>
+        <th>User</th>
+        <th>Action</th>
+        <th>IP</th>
+      </tr>
+      <tr *ngFor="let log of filterLogs(searchQuery)">
+        <td>{{ log.timestamp }}</td>
+        <td>{{ log.user }}</td>
+        <td>{{ log.action }}</td>
+        <td>{{ log.ip }}</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- 👁️‍🗨️ Active Sessions -->
+  <section>
+    <h3>Active Sessions</h3>
+    <table>
+      <tr>
+        <th>User</th>
+        <th>Active Sessions</th>
+        <th>Action</th>
+      </tr>
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{ user.username }}</td>
+        <td>{{ user.activeSessions }}</td>
+        <td><button (click)="revokeSessions(i)">Revoke All</button></td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- 🔐 Two-Factor Authentication -->
+  <section>
+    <h3>Two-Factor Authentication (2FA)</h3>
+    <table>
+      <tr>
+        <th>User</th>
+        <th>2FA Enabled</th>
+        <th>Action</th>
+      </tr>
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{ user.username }}</td>
+        <td>{{ user.is2FAEnabled ? "Yes" : "No" }}</td>
+        <td>
+          <button (click)="toggle2FA(i)">
+            {{ user.is2FAEnabled ? "Disable" : "Enable" }}
+          </button>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- 🧠 Login Attempts -->
+  <section>
+    <h3>Login Attempt Monitor</h3>
+    <div class="table-container">
+      <table>
+        <tr>
+          <th>User</th>
+          <th>Timestamp</th>
+          <th>Status</th>
+          <th>IP</th>
+        </tr>
+        <tr *ngFor="let log of loginAttempts">
+          <td>{{ log.user }}</td>
+          <td>{{ log.timestamp }}</td>
+          <td>{{ log.status }}</td>
+          <td>{{ log.ip }}</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- 🔎 IP Whitelisting -->
+  <section>
+    <h3>IP Whitelisting</h3>
+    <label>
+      Select User:
+      <select [(ngModel)]="selectedUserIndex">
+        <option *ngFor="let user of users; let i = index" [value]="i">
+          {{ user.username }}
+        </option>
+      </select>
+    </label>
+    <ul>
+      <li *ngFor="let ip of users[selectedUserIndex].ipWhitelist">
+        {{ ip }} <button (click)="removeIP(ip)">Remove</button>
+      </li>
+    </ul>
+    <input [(ngModel)]="newIP" placeholder="Add IP" />
+    <button (click)="addIP()">Add IP</button>
+  </section>
+
+  <!-- 🔏 Data Privacy -->
+  <section>
+    <h3>Data Privacy Settings</h3>
+    <label>
+      <input type="checkbox" checked /> Enforce Data Retention (90 days) </label
+    ><br />
+    <label>
+      <input type="checkbox" /> Auto-Anonymize Inactive Users (after 180 days)
+    </label>
+  </section>
+
+  <!-- 🛎️ Security Notifications -->
+  <section>
+    <h3>Security Notifications</h3>
+    <label> <input type="checkbox" checked /> Alert on New Device Login </label
+    ><br />
+    <label> <input type="checkbox" /> Alert on Password Changes </label><br />
+    <label> <input type="checkbox" /> Weekly Security Summary </label>
+  </section>
+
+  <!-- 🧷 Password Policy -->
+  <section>
+    <h3>Password Policy</h3>
+    <label><input type="checkbox" checked /> Minimum 8 characters</label><br />
+    <label><input type="checkbox" checked /> Must include numbers</label><br />
+    <label><input type="checkbox" /> Expire passwords every 90 days</label
+    ><br />
+    <label
+      ><input type="checkbox" /> Force password reset on suspicious login</label
+    >
+  </section>
+
+  <!-- 🧠 Threat Detection -->
+  <section>
+    <h3>Threat Detection</h3>
+    <label>
+      <input type="checkbox" /> Enable suspicious activity monitoring </label
+    ><br />
+    <label>
+      <input type="checkbox" /> Notify on login from unknown country </label
+    ><br />
+    <label> <input type="checkbox" checked /> Monitor for API abuse </label>
+  </section>
+
+  <section>
+    <h3>System Security Summary</h3>
+    <ul>
+      <li>Total Users: {{ users.length }}</li>
+      <li>Users with 2FA: {{ usersWith2FA }}</li>
+      <li>Whitelisted IPs: {{ totalWhitelistedIPs }}</li>
+      <li>Active Sessions: {{ totalActiveSessions }}</li>
+    </ul>
+  </section>
+</div>

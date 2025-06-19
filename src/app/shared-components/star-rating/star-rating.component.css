@@ -1,0 +1,16 @@
+.star-rating {
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+  font-size: 1.8rem;
+  color: var(--accent-color);
+}
+
+.star-rating i {
+  font-size: 14px;
+  transition: transform 0.2s;
+}
+
+.star-rating i:hover {
+  transform: scale(1.1);
+}

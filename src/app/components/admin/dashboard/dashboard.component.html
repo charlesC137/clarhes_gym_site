@@ -58,41 +58,43 @@
       ></i>
     </button>
 
-    <table class="membership-table" [ngClass]="{ show: showAnalyticsTable }">
-      <thead>
-        <tr>
-          <th>Plan Name</th>
-          <th>Members</th>
-          <th>Status</th>
-          <th>Monthly Revenue</th>
-          <th>Avg. Duration</th>
-          <th>Churn Rate</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let plan of membershipPlans">
-          <td>{{ plan.name }}</td>
-          <td>{{ plan.members }}</td>
-          <td>
-            <span
-              [ngClass]="{
-                'status-active': plan.status === 'Active',
-                'status-inactive': plan.status === 'Inactive',
-                'status-trial': plan.status === 'Trial'
-              }"
-              >{{ plan.status }}</span
-            >
-          </td>
-          <td>${{ plan.monthlyRevenue.toFixed(2) }}</td>
-          <td>{{ plan.avgDuration }} months</td>
-          <td>{{ plan.churnRate }}%</td>
-          <td>
-            <button>View</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-container">
+      <table class="membership-table" [ngClass]="{ show: showAnalyticsTable }">
+        <thead>
+          <tr>
+            <th>Plan Name</th>
+            <th>Members</th>
+            <th>Status</th>
+            <th>Monthly Revenue</th>
+            <th>Avg. Duration</th>
+            <th>Churn Rate</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let plan of membershipPlans">
+            <td>{{ plan.name }}</td>
+            <td>{{ plan.members }}</td>
+            <td>
+              <span
+                [ngClass]="{
+                  'status-active': plan.status === 'Active',
+                  'status-inactive': plan.status === 'Inactive',
+                  'status-trial': plan.status === 'Trial'
+                }"
+                >{{ plan.status }}</span
+              >
+            </td>
+            <td>${{ plan.monthlyRevenue.toFixed(2) }}</td>
+            <td>{{ plan.avgDuration }} months</td>
+            <td>{{ plan.churnRate }}%</td>
+            <td>
+              <button>View</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <h2>Class Attendance</h2>
@@ -118,37 +120,39 @@
       />
     </div>
 
-    <table class="attendance-table">
-      <thead>
-        <tr>
-          <th>Class</th>
-          <th>Trainer</th>
-          <th>Date</th>
-          <th>Time</th>
-          <th>Capacity</th>
-          <th>Attended</th>
-          <th>Attendance %</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let cls of filteredClasses">
-          <td>{{ cls.className }}</td>
-          <td>{{ cls.trainer }}</td>
-          <td>{{ cls.date }}</td>
-          <td>{{ cls.time }}</td>
-          <td>{{ cls.capacity }}</td>
-          <td>{{ cls.attended }}</td>
-          <td>{{ getAttendancePercentage(cls) }}%</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-container">
+      <table class="attendance-table">
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Trainer</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Capacity</th>
+            <th>Attended</th>
+            <th>Attendance %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cls of filteredClasses">
+            <td>{{ cls.className }}</td>
+            <td>{{ cls.trainer }}</td>
+            <td>{{ cls.date }}</td>
+            <td>{{ cls.time }}</td>
+            <td>{{ cls.capacity }}</td>
+            <td>{{ cls.attended }}</td>
+            <td>{{ getAttendancePercentage(cls) }}%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <h2>Recent Bookings</h2>
   <section
     style="
       border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-      padding-bottom: 10px;
+      padding-bottom: 20px;
     "
   >
     <div class="filters">
@@ -171,43 +175,123 @@
       </select>
     </div>
 
-    <table class="bookings-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Class</th>
-          <th>Date</th>
-          <th>Time</th>
-          <th>Payment</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let booking of filteredBookings">
-          <td>{{ booking.name }}</td>
-          <td>{{ booking.class }}</td>
-          <td>{{ booking.date }}</td>
-          <td>{{ booking.time }}</td>
-          <td>{{ booking.payment }}</td>
-          <td>
-            <span
-              [ngClass]="{
-                'status-attended': booking.status === 'Attended',
-                'status-no-show': booking.status === 'No-show'
-              }"
-              >{{ booking.status }}</span
-            >
-          </td>
-          <td>
-            <button (click)="markAttendance(booking, 'Attended')">✔️</button>
-            <button (click)="markAttendance(booking, 'No-show')">❌</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-container">
+      <table class="bookings-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Class</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Payment</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let booking of filteredBookings">
+            <td>{{ booking.name }}</td>
+            <td>{{ booking.class }}</td>
+            <td>{{ booking.date }}</td>
+            <td>{{ booking.time }}</td>
+            <td>{{ booking.payment }}</td>
+            <td>
+              <span
+                [ngClass]="{
+                  'status-attended': booking.status === 'Attended',
+                  'status-no-show': booking.status === 'No-show'
+                }"
+                >{{ booking.status }}</span
+              >
+            </td>
+            <td>
+              <button (click)="markAttendance(booking, 'Attended')">
+                <i class="fas fa-check"></i>
+              </button>
+              <button (click)="markAttendance(booking, 'No-show')">
+                <i class="fas fa-xmark"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <h2>Quick Admin Tools</h2>
-  <section class="quick-link"></section>
+  <section class="admin-tools-grid">
+    <a routerLink="/manage-members" class="tool-card">
+      <i class="fas fa-id-badge"></i>
+      <span>Manage Members</span>
+    </a>
+    <a routerLink="/manage-memberships" class="tool-card">
+      <i class="fas fa-credit-card"></i>
+      <span>Manage Memberships</span>
+    </a>
+    <a routerLink="/manage-classes" class="tool-card">
+      <i class="fas fa-dumbbell"></i>
+      <span>Classes & Appointments</span>
+    </a>
+    <a routerLink="/instructors" class="tool-card">
+      <i class="fas fa-chalkboard-teacher"></i>
+      <span>Instructor Management</span>
+    </a>
+    <a routerLink="/waitlist" class="tool-card">
+      <i class="fas fa-user-clock"></i>
+      <span>Waitlist & Bookings</span>
+    </a>
+    <a routerLink="/payments" class="tool-card">
+      <i class="fas fa-receipt"></i>
+      <span>Payments & Invoicing</span>
+    </a>
+    <a routerLink="/reports" class="tool-card">
+      <i class="fas fa-chart-pie"></i>
+      <span>Reports & Analytics</span>
+    </a>
+    <a routerLink="/marketing" class="tool-card">
+      <i class="fas fa-envelope-open-text"></i>
+      <span>Email & Campaigns</span>
+    </a>
+    <a routerLink="/forum" class="tool-card">
+      <i class="fas fa-comments"></i>
+      <span>Forum & Community</span>
+    </a>
+    <a routerLink="/security" class="tool-card">
+      <i class="fas fa-shield-alt"></i>
+      <span>Security & Compliance</span>
+    </a>
+  </section>
+
+  <section class="notifications-and-export">
+    <!-- Notifications -->
+    <div class="notifications">
+      <h3>📢 Admin Alerts</h3>
+      <div
+        *ngFor="let alert of alerts"
+        class="alert-box"
+        [ngClass]="alert.type"
+      >
+        <i class="fas fa-exclamation-circle"></i>
+        <span>{{ alert.message }}</span>
+        <button (click)="dismissAlert(alert)">✕</button>
+      </div>
+    </div>
+
+    <!-- Export Section -->
+    <div class="export-tools">
+      <h3>📁 Export Data</h3>
+      <div class="export-controls">
+        <label for="exportType">Choose data:</label>
+        <select id="exportType" [(ngModel)]="selectedExportType">
+          <option value="revenue">Revenue</option>
+          <option value="bookings">Bookings</option>
+          <option value="memberships">Memberships</option>
+        </select>
+
+        <button (click)="exportData('csv')">Export as CSV</button>
+        <button (click)="exportData('excel')">Export as Excel</button>
+        <button (click)="exportData('pdf')">Export as PDF</button>
+      </div>
+    </div>
+  </section>
 </div>

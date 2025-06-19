@@ -1,0 +1,9 @@
+<div class="star-rating">
+  <i
+    *ngFor="let star of stars; let i = index"
+    [ngClass]="getStarClass(i)"
+    (click)="rate(i + 1)"
+    (mousemove)="hover(i + 1)"
+    (mouseleave)="hoveredRating = 0"
+  ></i>
+</div>

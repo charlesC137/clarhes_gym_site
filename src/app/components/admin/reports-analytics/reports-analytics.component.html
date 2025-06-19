@@ -1,0 +1,151 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="metrics-grid">
+    <!-- Top Cards -->
+    <div class="card">Total Members: {{ totalMembers }}</div>
+    <div class="card">Active Today: {{ activeToday }}</div>
+    <div class="card">Monthly Revenue: ${{ monthlyRevenue }}</div>
+    <div class="card">Sessions Booked: {{ sessionsBooked }}</div>
+  </div>
+
+  <div class="filters">
+    <select [(ngModel)]="selectedRange">
+      <option *ngFor="let r of ranges">{{ r }}</option>
+    </select>
+    <input
+      *ngIf="selectedRange === 'Custom'"
+      type="date"
+      [(ngModel)]="customStart"
+    />
+    <input
+      *ngIf="selectedRange === 'Custom'"
+      type="date"
+      [(ngModel)]="customEnd"
+    />
+    <select [(ngModel)]="selectedPlan">
+      <option value="">All Plans</option>
+      <option *ngFor="let p of plans">{{ p }}</option>
+    </select>
+    <input placeholder="Search..." [(ngModel)]="searchTerm" />
+    <button (click)="applyFilters()">Apply</button>
+    <button (click)="exportCSV()">CSV</button>
+    <button (click)="exportPDF()">PDF</button>
+    <button (click)="sendEmail()">Email</button>
+    <label
+      ><input type="checkbox" [(ngModel)]="toggleCompare" /> Compare
+      Months/Plans</label
+    >
+  </div>
+
+  <div class="charts">
+    <div class="chart-card">
+      <h4>Attendance Trend</h4>
+      <canvas
+        baseChart
+        [data]="attendanceConfig.data"
+        [options]="attendanceConfig.options"
+        [type]="attendanceConfig.type"
+      >
+      </canvas>
+    </div>
+
+    <div class="chart-card">
+      <h4>Membership Growth</h4>
+      <canvas
+        baseChart
+        [data]="membershipConfig.data"
+        [options]="membershipConfig.options"
+        [type]="membershipConfig.type"
+      >
+      </canvas>
+    </div>
+
+    <div class="chart-card small-chart">
+      <h4>Income vs Expenses</h4>
+      <canvas
+        baseChart
+        [data]="financeConfig.data"
+        [options]="financeConfig.options"
+        [type]="financeConfig.type"
+      >
+      </canvas>
+    </div>
+
+    <div class="chart-card">
+      <h4>Trainer Performance</h4>
+      <canvas
+        baseChart
+        [data]="trainerConfig.data"
+        [options]="trainerConfig.options"
+        [type]="trainerConfig.type"
+      >
+      </canvas>
+    </div>
+  </div>
+
+  <section class="live-stats">
+    <h2>Live Stats</h2>
+
+    <div style="margin-top: 19.95px">Active Now: {{ activeMembers }}</div>
+
+    <div>
+      <h4>Most Popular Classes</h4>
+      <ul>
+        <li *ngFor="let c of popularClasses">{{ c }}</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Check Ins By Hour</h4>
+      <ul>
+        <li *ngFor="let chk of checkinsByHour; let i = index">
+          {{ i }}h: {{ chk }}
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h3>Member Signups</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Join Date</th>
+          <th>Plan</th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let m of members">
+          <td>{{ m.name }}</td>
+          <td>{{ m.joinDate }}</td>
+          <td>{{ m.plan }}</td>
+          <td>{{ m.source }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h3>Financial Transactions</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of transactions">
+          <td>{{ t.date }}</td>
+          <td>{{ t.type }}</td>
+          <td>\${{ t.amount }}</td>
+          <td>{{ t.category }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

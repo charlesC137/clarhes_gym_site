@@ -1,0 +1,146 @@
+.class-manager {
+  background-color: var(--primary-color);
+  padding: 2rem;
+  color: white;
+  padding-top: 70px;
+
+  h2 {
+    color: var(--secondary-color);
+  }
+
+  .class-form {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      label {
+        margin-bottom: 0.3rem;
+        color: #ccc;
+      }
+      input,
+      select {
+        padding: 0.5rem;
+        border: 1px solid #333;
+        background-color: #262626;
+        color: white;
+      }
+    }
+
+    .primary-btn {
+      background-color: var(--secondary-color);
+      color: black;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      cursor: pointer;
+    }
+
+    .cancel-btn {
+      background-color: var(--accent-color);
+      color: black;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      margin-left: 1rem;
+      cursor: pointer;
+    }
+  }
+
+  .filter-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    input,
+    select {
+      padding: 0.5rem;
+      border: 1px solid #333;
+      background-color: #1f1f1f;
+      color: white;
+    }
+
+    button {
+      background-color: var(--secondary-color);
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      color: black;
+    }
+  }
+
+  .class-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #333;
+    }
+
+    th {
+      background-color: #222;
+      color: var(--secondary-color);
+    }
+
+    tr:hover {
+      background-color: #2a2a2a;
+    }
+
+    .Active {
+      color: var(--secondary-color);
+    }
+    .Cancelled {
+      color: red;
+    }
+    .Full {
+      color: var(--accent-color);
+    }
+  }
+}
+
+.calendar-view {
+  margin-top: 2rem;
+  margin-bottom: 20px;
+  .calendar-grid {
+    display: flex;
+    gap: 1rem;
+    .day-column {
+      flex: 1;
+      background: #1f1f1f;
+      padding: 1rem;
+      border: 1px solid #333;
+
+      .day-header {
+        font-weight: bold;
+        color: var(--secondary-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .calendar-class {
+        margin-bottom: 0.5rem;
+        padding: 0.4rem;
+        background-color: #262626;
+        border-left: 5px solid;
+      }
+
+      .Active {
+        border-color: var(--secondary-color);
+      }
+      .Cancelled {
+        border-color: red;
+      }
+      .Full {
+        border-color: var(--accent-color);
+      }
+    }
+  }
+}
+
+.filter-bar,
+.table-container,
+.calendar-grid {
+  overflow-x: scroll;
+}

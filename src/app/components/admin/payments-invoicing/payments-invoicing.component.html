@@ -1,0 +1,123 @@
+<app-header></app-header>
+
+<div class="container">
+  <h1>Payments & Invoicing</h1>
+
+  <!-- Summary Cards -->
+  <div class="summary">
+    <div class="card">Total Revenue: ₦{{ totalRevenue }}</div>
+    <div class="card">Pending: ₦{{ pendingTotal }}</div>
+    <div class="card">Refunded: ₦{{ refundedTotal }}</div>
+  </div>
+
+  <!-- Create Invoice -->
+  <form
+    class="invoice-form"
+    (submit)="submitInvoice(); $event.preventDefault()"
+  >
+    <h2>Create Invoice</h2>
+    <label>Client</label>
+    <input
+      type="text"
+      [(ngModel)]="newPayment.client"
+      name="client"
+      required
+      list="client-list"
+    />
+    <datalist id="client-list">
+      <option *ngFor="let client of clients" [value]="client"></option>
+    </datalist>
+
+    <div class="items">
+      <div *ngFor="let item of newPayment.items; let i = index" class="item">
+        <input
+          type="text"
+          [(ngModel)]="item.name"
+          name="item{{ i }}name"
+          placeholder="Item name"
+        />
+        <input
+          type="number"
+          [(ngModel)]="item.amount"
+          name="item{{ i }}amount"
+          placeholder="₦0.00"
+        />
+        <button (click)="removeItem(i)"><i class="fas fa-xmark"></i></button>
+      </div>
+    </div>
+
+    <button
+      (click)="addItem()"
+      style="display: block; margin-bottom: 20px; color: white"
+    >
+      <i class="fas fa-plus"></i> Add Item
+    </button>
+
+    <label>Tax (%)</label>
+    <input type="number" [(ngModel)]="newPayment.tax" name="tax" />
+
+    <label>Due Date</label>
+    <input type="date" [(ngModel)]="newPayment.dueDate" name="dueDate" />
+
+    <label>Payment Method</label>
+    <select [(ngModel)]="newPayment.method" name="method">
+      <option>Credit Card</option>
+      <option>Bank Transfer</option>
+      <option>Wallet</option>
+    </select>
+
+    <button type="submit">Send Invoice</button>
+  </form>
+
+  <!-- Filter -->
+  <div class="filter">
+    <label>Filter by Status:</label>
+    <select [(ngModel)]="filterStatus" name="filter">
+      <option>All</option>
+      <option>Paid</option>
+      <option>Pending</option>
+      <option>Refunded</option>
+    </select>
+  </div>
+
+  <!-- Transactions Table -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Client</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Due Date</th>
+          <th>Method</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let payment of filteredPayments">
+          <td>{{ payment.id }}</td>
+          <td>{{ payment.client }}</td>
+          <td>₦{{ payment.amount }}</td>
+          <td [class]="payment.status.toLowerCase()">{{ payment.status }}</td>
+          <td>{{ payment.dueDate }}</td>
+          <td>{{ payment.method }}</td>
+          <td>
+            <button
+              (click)="markAsPaid(payment)"
+              [disabled]="payment.status !== 'Pending'"
+            >
+              Mark Paid
+            </button>
+            <button
+              (click)="refund(payment)"
+              [disabled]="payment.status !== 'Paid'"
+            >
+              Refund
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+.container {
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.form input,
+.form textarea,
+.form select {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  color: #fff;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  background-color: var(--secondary-color);
+  border: none;
+  color: black;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.preview .email-box {
+  background: #111;
+  border: 1px solid var(--accent-color);
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.campaigns .campaign,
+.automation {
+  margin-top: 1rem;
+  background: #222;
+  padding: 0.75rem;
+  border-left: 3px solid var(--secondary-color);
+}
+
+.reports canvas {
+  max-width: 400px;
+  margin-top: 1rem;
+}
+
+.spacing {
+  margin-right: 10px;
+}
+
+@media (max-width: 520px) {
+  .spacing {
+    margin-top: 10px;
+  }
+}

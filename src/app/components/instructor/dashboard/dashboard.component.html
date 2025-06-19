@@ -1,0 +1,81 @@
+<app-header></app-header>
+
+<div class="dashboard-container">
+  <section class="profile-section">
+    <div class="img-container">
+      <img [src]="trainer.photoUrl || defaultAvatar" alt="Trainer Avatar" />
+    </div>
+    <h2>{{ trainer.name }}</h2>
+    <p>{{ trainer.specialty }}</p>
+    <button (click)="editProfile()">Edit Profile</button>
+  </section>
+
+  <section class="classes-section">
+    <h3>Assigned Classes</h3>
+    <div *ngFor="let gymClass of classes" class="class-card">
+      <h4>{{ gymClass.name }}</h4>
+      <p>{{ gymClass.date | date : "short" }} | {{ gymClass.location }}</p>
+      <p>{{ gymClass.members.length }} Members</p>
+      <button (click)="manageClass(gymClass.id)">Manage</button>
+      <button class="danger" (click)="cancelClass(gymClass.id)">Cancel</button>
+    </div>
+  </section>
+
+  <section class="bookings-section">
+    <h3>Member Bookings</h3>
+    <table>
+      <tr>
+        <th>Member</th>
+        <th>Class</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Mark</th>
+      </tr>
+      <tr *ngFor="let booking of bookings">
+        <td>{{ booking.memberName }}</td>
+        <td>{{ booking.className }}</td>
+        <td>{{ booking.date | date }}</td>
+        <td>{{ booking.status }}</td>
+        <td>
+          <input type="checkbox" (change)="toggleAttendance(booking.id)" />
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="calendar-section">
+    <h3>Availability</h3>
+    <div class="calendar-grid">
+      <div
+        *ngFor="let slot of availability"
+        [class.available]="slot.isAvailable"
+      >
+        {{ slot.day }} - {{ slot.time }}
+        <button (click)="toggleSlot(slot)">Toggle</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="notifications-section">
+    <h3>Notifications</h3>
+    <ul>
+      <li *ngFor="let note of notifications">{{ note.message }}</li>
+    </ul>
+  </section>
+
+  <section class="performance-section">
+    <h3>Performance</h3>
+    <app-star-rating
+      [rating]="trainerRating"
+      (ratingChange)="onTrainerRated($event)"
+      [readOnly]="true"
+    ></app-star-rating>
+    <p>Classes This Week: {{ stats.classesThisWeek }}</p>
+    <p>Members Trained: {{ stats.members }}</p>
+
+    <p>Attendance Rate: {{ stats.attendanceRate }}%</p>
+    <div class="progress-bar">
+      <div class="fill" [style.width.%]="stats.attendanceRate"></div>
+    </div>
+  </section>
+</div>

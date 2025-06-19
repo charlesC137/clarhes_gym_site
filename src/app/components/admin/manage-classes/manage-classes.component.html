@@ -1,0 +1,172 @@
+<app-header></app-header>
+
+<div class="class-manager">
+  <h2>Manage Classes & Appointments</h2>
+
+  <!-- Form -->
+  <form (submit)="saveClass()" class="class-form">
+    <div class="form-row">
+      <label>Title</label>
+      <input type="text" [(ngModel)]="form.title" name="title" required />
+    </div>
+
+    <div class="form-row">
+      <label>Type</label>
+      <select [(ngModel)]="form.type" name="type">
+        <option value="Group">Group Class</option>
+        <option value="Personal">Personal Training</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label>Instructor</label>
+      <input
+        type="text"
+        [(ngModel)]="form.instructor"
+        name="instructor"
+        required
+      />
+    </div>
+
+    <div class="form-row">
+      <label>Date</label>
+      <input type="date" [(ngModel)]="form.date" name="date" required />
+    </div>
+
+    <div class="form-row">
+      <label>Start Time</label>
+      <input
+        type="time"
+        [(ngModel)]="form.startTime"
+        name="startTime"
+        required
+      />
+    </div>
+
+    <div class="form-row">
+      <label>End Time</label>
+      <input type="time" [(ngModel)]="form.endTime" name="endTime" required />
+    </div>
+
+    <div class="form-row">
+      <label>Tag</label>
+      <select [(ngModel)]="form.tag" name="tag">
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label>Max Capacity</label>
+      <input
+        type="number"
+        [(ngModel)]="form.capacity"
+        name="capacity"
+        required
+      />
+    </div>
+
+    <div class="form-row">
+      <label>Status</label>
+      <select [(ngModel)]="form.status" name="status">
+        <option value="Active">Active</option>
+        <option value="Cancelled">Cancelled</option>
+        <option value="Full">Full</option>
+      </select>
+    </div>
+
+    <button type="submit" class="primary-btn">
+      {{ isEditing ? "Update" : "Create" }}
+    </button>
+    <button
+      type="button"
+      *ngIf="isEditing"
+      (click)="cancelEdit()"
+      class="cancel-btn"
+    >
+      Cancel
+    </button>
+  </form>
+
+  <!-- Search and Filter -->
+  <div class="filter-bar">
+    <input
+      type="text"
+      placeholder="Search by Title or Instructor"
+      [(ngModel)]="searchText"
+    />
+    <select [(ngModel)]="filterStatus">
+      <option value="">All Status</option>
+      <option value="Active">Active</option>
+      <option value="Cancelled">Cancelled</option>
+      <option value="Full">Full</option>
+    </select>
+    <button (click)="exportToCSV()">Export CSV</button>
+  </div>
+
+  <!-- Class List -->
+  <div class="table-container">
+    <table class="class-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Type</th>
+          <th>Instructor</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Difficulty</th>
+          <th>Capacity</th>
+          <th>Attendance</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of paginatedClasses()">
+          <td>{{ c.title }}</td>
+          <td>{{ c.type }}</td>
+          <td>{{ c.instructor }}</td>
+          <td>{{ c.date }}</td>
+          <td>{{ c.startTime }} - {{ c.endTime }}</td>
+          <td>{{ c.tag }}</td>
+          <td>{{ c.capacity }}</td>
+          <td>{{ c.checkedIn || 0 }}/{{ c.capacity }}</td>
+
+          <td>
+            <span [ngClass]="getStatusClass(c.status)">{{ c.status }}</span>
+          </td>
+          <td>
+            <button (click)="editClass(c)">Edit</button>
+            <button (click)="deleteClass(c)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination-controls">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">Prev</button>
+    Page {{ currentPage }} of {{ totalPages }}
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+      Next
+    </button>
+  </div>
+
+  <!-- Calendar View -->
+  <div class="calendar-view">
+    <h3>Weekly Calendar</h3>
+    <div class="calendar-grid">
+      <div class="day-column" *ngFor="let day of weekDays">
+        <div class="day-header">{{ day }}</div>
+        <div
+          *ngFor="let item of getClassesByDay(day)"
+          [ngClass]="getStatusClass(item.status)"
+          class="calendar-class"
+        >
+          {{ item.title }} ({{ item.startTime }})
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

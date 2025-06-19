@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  ChartData,
-  ChartOptions,
-  ChartType,
-  ChartConfiguration,
-} from 'chart.js';
+import { ChartData, ChartOptions } from 'chart.js';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,6 +7,9 @@ import {
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+  //adjust the links in the header
+  //Disable the buttons after one is clicked (to prevent toggling) in the attendance table
+
   pieChartOptions!: ChartOptions<'pie'>;
   showAnalyticsTable: boolean = false;
   selectedTrainer = '';
@@ -21,6 +19,17 @@ export class DashboardComponent implements OnInit {
   searchName = '';
   selectedClass = '';
   selectedStatus = '';
+  selectedExportType: string = 'revenue';
+
+  alerts = [
+    { id: 1, message: '3 invoices are pending payment.', type: 'warning' },
+    {
+      id: 2,
+      message: 'Class "Morning Yoga" has low attendance.',
+      type: 'info',
+    },
+    { id: 3, message: '5 memberships expire this week.', type: 'danger' },
+  ];
 
   ngOnInit(): void {
     const stats = this.membershipStats;
@@ -59,7 +68,6 @@ export class DashboardComponent implements OnInit {
     };
   }
 
-  //adjust the links in the header
   public lineChartData: ChartData<'line'> = {
     labels: [
       'Jan',
@@ -133,25 +141,25 @@ export class DashboardComponent implements OnInit {
       name: 'Basic',
       members: 120,
       avgDurationMonths: 6,
-      monthlyRevenue: 10 * 120, // $10 per user
+      monthlyRevenue: 10 * 120,
     },
     {
       name: 'Premium',
       members: 80,
       avgDurationMonths: 10,
-      monthlyRevenue: 25 * 80, // $25 per user
+      monthlyRevenue: 25 * 80,
     },
     {
       name: 'VIP',
       members: 25,
       avgDurationMonths: 12,
-      monthlyRevenue: 50 * 25, // $50 per user
+      monthlyRevenue: 50 * 25,
     },
     {
       name: 'Trial',
       members: 30,
       avgDurationMonths: 1,
-      monthlyRevenue: 0, // free
+      monthlyRevenue: 0,
     },
   ];
 
@@ -215,7 +223,6 @@ export class DashboardComponent implements OnInit {
       capacity: 15,
       attended: 12,
     },
-    // Add more
   ];
 
   get filteredClasses() {
@@ -267,5 +274,14 @@ export class DashboardComponent implements OnInit {
 
   markAttendance(booking: any, status: 'Attended' | 'No-show') {
     booking.status = status;
+  }
+
+  dismissAlert(alertToRemove: any) {
+    this.alerts = this.alerts.filter((alert) => alert.id !== alertToRemove.id);
+  }
+
+  exportData(format: string) {
+    const exportType = this.selectedExportType;
+    alert(`Exporting ${exportType} data as ${format.toUpperCase()}.`);
   }
 }

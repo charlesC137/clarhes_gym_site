@@ -1,0 +1,94 @@
+<app-header></app-header>
+
+<div class="membership-container">
+  <h2>Manage Memberships</h2>
+
+  <input
+    type="text"
+    [(ngModel)]="searchTerm"
+    placeholder="Search plans..."
+    class="search-box"
+  />
+
+  <div class="form-section">
+    <h3>{{ editingPlanId ? "Edit Plan" : "New Plan" }}</h3>
+    <input [(ngModel)]="newPlan.name" placeholder="Plan Name" />
+    <input type="number" [(ngModel)]="newPlan.price" placeholder="Price ($)" />
+    <select [(ngModel)]="newPlan.durationInMonths">
+      <option value="" disabled selected hidden>Plan Duration In Months</option>
+      <option [value]="1">1 Month</option>
+      <option [value]="3">3 Months</option>
+      <option [value]="6">6 Months</option>
+      <option [value]="12">12 Months</option>
+    </select>
+
+    <select [(ngModel)]="newPlan.billingCycle">
+      <option value="" disabled selected hidden>Select Billing Cycle</option>
+      <option>Monthly</option>
+      <option>Quarterly</option>
+      <option>Annually</option>
+    </select>
+
+    <input
+      type="number"
+      [(ngModel)]="newPlan.trialPeriodDays"
+      placeholder="Trial Period (Days)"
+    />
+    <input
+      type="number"
+      [(ngModel)]="newPlan.discountPercent"
+      placeholder="Discount (%)"
+    />
+
+    <div class="feature-box">
+      <label>
+        <input
+          type="checkbox"
+          (change)="toggleFeature('Gym Access')"
+          [checked]="hasFeature('Gym Access')"
+        />
+        Gym Access
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          (change)="toggleFeature('Group Classes')"
+          [checked]="hasFeature('Group Classes')"
+        />
+        Group Classes
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          (change)="toggleFeature('Sauna')"
+          [checked]="hasFeature('Sauna')"
+        />
+        Sauna
+      </label>
+    </div>
+
+    <button (click)="savePlan()" class="primary-btn">
+      {{ editingPlanId ? "Update" : "Create" }} Plan
+    </button>
+  </div>
+
+  <div class="plans-list">
+    <h3>Existing Plans</h3>
+    <div *ngFor="let plan of filteredPlans()" class="plan-card">
+      <h4>{{ plan.name }}</h4>
+      <p>${{ plan.price }} / {{ plan.billingCycle }}</p>
+      <p>Duration: {{ plan.durationInMonths }} months</p>
+      <p>Trial: {{ plan.trialPeriodDays }} days</p>
+      <p>Discount: {{ plan.discountPercent }}%</p>
+      <p>Members: {{ plan.memberCount }}</p>
+      <ul>
+        <li *ngFor="let feat of plan.features">{{ feat.name }}</li>
+      </ul>
+      <button (click)="editPlan(plan)">Edit</button>
+      <button (click)="deletePlan(plan.id)">Delete</button>
+      <button (click)="togglePlanStatus(plan)">
+        {{ plan.isActive ? "Deactivate" : "Activate" }}
+      </button>
+    </div>
+  </div>
+</div>

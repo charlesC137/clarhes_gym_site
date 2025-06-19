@@ -1,0 +1,83 @@
+.container {
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.cont-2 {
+  margin: 20px auto;
+  width: fit-content;
+  background-color: var(--light-black);
+  padding: 30px;
+  border-radius: 10px;
+}
+
+label {
+  margin-right: 10px;
+}
+
+.class-selector,
+.controls,
+.add-member {
+  margin-bottom: 1rem;
+}
+
+input,
+select,
+button {
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 4px;
+  border: none;
+}
+
+button {
+  background-color: var(--secondary-color);
+  color: #fff;
+  transition: all 0.3s;
+}
+
+button:hover {
+  background-color: var(--accent-color);
+  color: black;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.countdown {
+  margin-top: 0.5rem;
+  font-style: italic;
+  color: var(--accent-color);
+}
+
+@media (max-width: 660px) {
+  button {
+    margin-top: 5px;
+  }
+
+  .cont-2 {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  input {
+    margin-bottom: 5px;
+  }
+}
